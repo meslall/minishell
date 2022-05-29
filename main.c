@@ -6,13 +6,31 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/05/23 20:50:02 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/05/29 13:10:53 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list *ft_filtre(char *line, t_all *all)
+// void	handle_sigint(int sig)
+// {
+// 	if (sig != SIGINT)
+// 		return ;
+// 	printf("\n");
+// 	rl_on_new_line();
+// 	rl_replace_line("", 0);
+// 	rl_redisplay();
+// }
+
+// void	handle_sigquit(int sig)
+// {
+// 	if (sig != SIGQUIT)
+// 		return ;
+// 	rl_on_new_line();
+// }
+
+
+t_list *ft_filtre(char *line, t_all *all, char **env)
 {
 	t_list *l;
 	t_list *temp;
@@ -34,29 +52,16 @@ t_list *ft_filtre(char *line, t_all *all)
 		ft_lstadd_back(&l,temp);
 		i++;
 	}
-	
-	while (l)
-	{
-		i = 0;
-		printf("---------------------------\n");
-		while (((t_all *)l->content)->cmd[i])
-		{
-			printf("%s\n", ((t_all *)l->content)->cmd[i]);
-			i++;
-		}
-		printf("---------------------------\n");
-		l = l->next;
-	}
-	
-
+	check_redirections(l);
+    ft_exec(l, env);
 	return(l);
 }
 
-void    minishell(char *line,t_all *all)
+void    minishell(char *line,t_all *all, char **env)
 {
 	t_list *filtre;
 	
-	filtre = ft_filtre(line,all);
+	filtre = ft_filtre(line,all, env);
 }
 
 int main(int ac,char **av,char **envp)
@@ -66,9 +71,11 @@ int main(int ac,char **av,char **envp)
 
 	if (!av || !envp)
 		return(0);
+	// signal(SIGINT, handle_sigint);
+	// signal(SIGQUIT, handle_sigquit);
 	all = malloc(sizeof(t_all));
 	all->envp = envp;
-	converter(envp, all);    
+	converter(envp, all);
 	if (ac == 1)
 	{    
 		while(1)
@@ -79,7 +86,9 @@ int main(int ac,char **av,char **envp)
 			if (line && *line)
 				add_history (line);
 			if(handle_errors(line))
-				minishell(line,all);
+			{
+				minishell(line,all, envp);
+			}
 		}
 	}
-}
+} 
