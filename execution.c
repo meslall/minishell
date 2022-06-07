@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdasser <zdasser@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/05/27 20:32:14 by zdasser          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:08:30 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ void ft_exec (t_list *l, char **env)
   t_pipe p;
    int i = 0;
    int j = 0;
-   char *tmp;
-  char *cmd;
+//    char *tmp;
+//   char *cmd;
   int n = ft_lstsize(l);
   int in = 0;
   get_path(env, &p);
@@ -187,16 +187,20 @@ void ft_exec (t_list *l, char **env)
 		 	  close (fd[1]);
 			  close (fd[0]);
 			}
-			  
-		 	while (p.splitpaths[i])
-		 	{
-		 		tmp = ft_strjoin(p.splitpaths[i], "/");
-		 		cmd = ft_strjoin(tmp, ((t_all *)l->content)->cmd[0]);
-		 		free(tmp);
-		 		if (!access(cmd, X_OK))
-		 		execve(cmd, ((t_all *)l->content)->cmd, env);
-		 		i++;
-		 	}
+			if(is_builtin(((t_all *)l->content)->cmd[0]))
+				change_path(((t_all *)l->content)->cmd[1],((t_all *)l->content)->envp);
+			else
+			{
+		 		while (p.splitpaths[i])
+		 		{
+		 		// 	tmp = ft_strjoin(p.splitpaths[i], "/");
+		 		// 	cmd = ft_strjoin(tmp, ((t_all *)l->content)->cmd[0]);
+		 		// 	free(tmp);
+		 		// 	if (!access(cmd, X_OK))
+		 		// 	execve(cmd, ((t_all *)l->content)->cmd, env);
+		 		// 	i++;
+		 		}
+			}
 		 }
 		in = fd[0];
 		close (fd[1]);

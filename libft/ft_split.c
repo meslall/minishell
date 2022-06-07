@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 19:21:14 by omeslall          #+#    #+#             */
-/*   Updated: 2022/05/23 23:51:20 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:41:07 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,12 @@ static int	count_words(char const *s, char c)
 	{
 		if (s[i] == '"' || s[i] == 39)
 		{
-			if(type != 0 && s[i] == temp)
+			if(qout == 2)
+				qout = 0;
+			if(qout == 0)
+				temp = s[i];
+			if(qout == 0 || s[i] == temp)
 				qout++;
-			if(s[i] == '"' && type == 0)
-				{
-                    temp = s[i];
-					qout++;
-					type = 2;
-				}
-			else if(s[i] == 39 && type == 0)
-				{
-                    temp = s[i];
-					qout++;
-					type = 1;
-				}
 		}
 		else if (s[i] != c && flag == 0)
 		{
@@ -104,7 +96,7 @@ static char	**itre(char const *s, char c, char **array)
 	int		i;
 	int		j;
 	int		k;
-	int		qoute;
+	int		qout;
 	char	temp;
 	int		type;
 
@@ -112,34 +104,27 @@ static char	**itre(char const *s, char c, char **array)
 	k = -1;
 	j = 0;
 	i = 0;
-	qoute = 0;
+	qout = 0;
 	size = ft_strlen(s);
 	while (i <= size)
 	{
 		if (s[i] == '"' || s[i] == 39)
 		{
-			if(type != 0 && s[i] == temp)
-				qoute++;
-			if(s[i] == '"' && type == 0)
-				{
-                    temp = s[i];
-					qoute++;
-					type = 2;
-				}
-			else if(s[i] == 39 && type == 0)
-				{
-                    temp = s[i];
-					qoute++;
-					type = 1;
-				}
+			if(qout == 2)
+				qout = 0;
+			if(qout == 0)
+				temp = s[i];
+			if(qout == 0 || s[i] == temp)
+				qout++;
+			
 		}
 		if (s[i] != c && k < 0)
 			k = i;
-		else if ((s[i] == c || i == size) && k >= 0 && (qoute == 0 || qoute == 2))
+		else if ((s[i] == c || i == size) && k >= 0 && (qout == 0 || qout == 2))
 		{
 			array[j] = word_in(s, k, i);
 			k = -1;
-			qoute = 0;
+			qout = 0;
 			type = 0;
 			j++;
 		}

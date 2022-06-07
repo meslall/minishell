@@ -6,15 +6,16 @@
 #    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/05/29 13:10:09 by omeslall         ###   ########.fr        #
+#    Updated: 2022/06/06 09:15:28 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c error_handling.c minishell_utils.c redirections.c execution.c\
+SRC = main.c error_handling.c minishell_utils.c redirections.c execution.c cd.c\
 
-CC = @gcc -g -lreadline -L /Users/omeslall/.brew/opt/readline/lib -I/Users/omeslall/.brew/opt/readline/include
+CC = @gcc -g -lreadline 
+# -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 

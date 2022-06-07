@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/05/29 13:10:53 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/06/06 16:08:51 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@
 // }
 
 
-t_list *ft_filtre(char *line, t_all *all, char **env)
+
+t_list *ft_filtre(char *line, t_all *all)
 {
 	t_list *l;
 	t_list *temp;
 	char **pipe;
 	char **sp;
 	int i = 0;
+	int k =0;
 	
 
 	l = NULL;
@@ -48,20 +50,35 @@ t_list *ft_filtre(char *line, t_all *all, char **env)
 		all = ft_init(all);	
 		temp = ft_lstnew(all);
 		sp = ft_split(pipe[i],' ');
+		k = 0;
+		while (sp[k])
+		{
+			printf("**%s**\n",sp[k]);
+			k++;
+		}
+		printf("____________________________________________________\n");
 		((t_all *)temp->content)->cmd = sp;
+		((t_all *)temp->content)->ccmd = ft_ccmd(sp);
+		// while (((t_all *)temp->content)->ccmd[k])
+		// {
+		// 	printf("{%s}\n", ((t_all *)temp->content)->ccmd[k]);
+		// 	k++;
+		// }
+		
 		ft_lstadd_back(&l,temp);
 		i++;
 	}
-	check_redirections(l);
-    ft_exec(l, env);
+	
 	return(l);
 }
 
 void    minishell(char *line,t_all *all, char **env)
 {
 	t_list *filtre;
-	
-	filtre = ft_filtre(line,all, env);
+	(void) env;
+	filtre = ft_filtre(line,all);
+	// check_redirections(filtre);
+    // ft_exec(filtre, env);
 }
 
 int main(int ac,char **av,char **envp)
@@ -85,10 +102,10 @@ int main(int ac,char **av,char **envp)
 				exit(0);
 			if (line && *line)
 				add_history (line);
-			if(handle_errors(line))
-			{
 				minishell(line,all, envp);
-			}
+			// if(handle_errors(line))
+			// {
+			// }
 		}
 	}
 } 

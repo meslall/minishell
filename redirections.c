@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zdasser <zdasser@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 09:43:36 by zdasser           #+#    #+#             */
-/*   Updated: 2022/05/27 18:12:32 by zdasser          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:55:14 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_redirections(t_list *list)
 			((t_all *)list->content)->inf = malloc(sizeof(int) * count);
 		while(s[i])
 		{
-			printf("---%s----\n",s[i]);
+			// printf("---%s----\n",s[i]);
 			if(ft_cmp(s[i], '<') && ft_strlen(s[i]) == 1)
 			{
 				infile = s[i + 1];

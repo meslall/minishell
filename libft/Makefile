@@ -16,9 +16,10 @@ BONUS_O	= $(BONUS_S:.c=.o)
 
 ICLS	= libft.h
 
-CC		= @gcc -c
+CC		= @gcc -c -g 
+# -fsanitize=address
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror 
 
 AR	= @ar -rcs
 

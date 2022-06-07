@@ -23,20 +23,20 @@
 //     return (exec);
 // }
 
-// void    path_finder(char **envp)
-// {
-//     char **str;
-//     int i = 0;
-//     str = envp;
+void    path_finder(char **envp)
+{
+    char **str;
+    int i = 0;
+    str = envp;
 
 
-//     while(str[i])
-//     {
-//         if(ft_strncmp(str[i], "PATH=", 5) == 0)
-//             split_path(str[i] + 5, envp,exec);
-//         i++;
-//     }
-// }
+    while(str[i])
+    {
+        if(ft_strncmp(str[i], "PATH=", 5) == 0)
+            split_path(str[i] + 5, envp,exec);
+        i++;
+    }
+}
 
 // void    fill_struct(char **cmd)
 // {
@@ -46,33 +46,33 @@
 //     exec->cmd = cmd;
 // }
 
-// void split_path(char *path, char **envp,t_exec *exec)
-// {
+void split_path(char *path, char **envp,t_exec *exec)
+{
 
-//     char **str;
-//     char *cmd_test;
-//     char;
-//     int i = 0;
-//     str = ft_split(path, ':');
-//     while(str[i])
-//     {
-//         str[i] = ft_strjoin(str[i], "/");
-//         i++;
-//     }
-//     i = 0;
-//     while(exec->cmd[i])
-//     {
-//         cmd_test = ft_strjoin(cmd_test,cmd[i]);
-//         i++; 
-//     }
-//     i = 0;
-//     while(str[i])
-//     {
-//         if (access_check(str[i], cmd_test, envp))
-//             break;
-//         i++;
-//     }
-// }
+    char **str;
+    char *cmd_test;
+    char;
+    int i = 0;
+    str = ft_split(path, ':');
+    while(str[i])
+    {
+        str[i] = ft_strjoin(str[i], "/");
+        i++;
+    }
+    i = 0;
+    while(exec->cmd[i])
+    {
+        cmd_test = ft_strjoin(cmd_test,cmd[i]);
+        i++; 
+    }
+    i = 0;
+    while(str[i])
+    {
+        if (access_check(str[i], cmd_test, envp))
+            break;
+        i++;
+    }
+}
 
 // int access_check(char *path , char *cmd_test, char **envp)
 // {

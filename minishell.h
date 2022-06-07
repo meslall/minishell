@@ -13,14 +13,18 @@
 #include <fcntl.h>
 #include <signal.h>
 
+#define S_QUOTE '\''
+#define D_QUOTE '"'
+
 typedef struct s_all
 {
-    char **cmd;
-    char **envp;
-    t_list *lenvp;
-    int hd;
-   	int *inf;
-    int *outf;
+    char	**cmd;
+	char	**ccmd;
+    char	**envp;
+    t_list	*lenvp;
+    int		hd;
+   	int		*inf;
+    int		*outf;
 } t_all;
 
 typedef struct s_p {
@@ -32,18 +36,22 @@ typedef struct s_p {
 	int		size;
 	int		id;
 	char	**env_hold;
-	int	exit_value_hold;
+	int		exit_value_hold;
 }	t_pipe;
 
-void parse(char s);
-int	handle_errors(char *argv);
-int handle_characters(char *s, int i);
-int	handle_quotes(char *s);
-int	ft_cmp(char *s, char c);
-int check_qoute(char *str);
-void converter(char **envp,t_all *all);
-t_all *ft_init(t_all *all);
+void	parse(char s);
+int		handle_errors(char *argv);
+int		handle_characters(char *s, int i);
+int		handle_quotes(char *s);
+int		ft_cmp(char *s, char c);
+int		check_qoute(char *str);
+void	converter(char **envp,t_all *all);
+t_all	*ft_init(t_all *all);
 void	check_redirections(t_list *list);
 void	ft_exec(t_list *l, char **env);
 void	multiprocessing(t_list *l, char **envp);
+int		change_path(char *name_folder ,char **env);
+int		is_builtin(char *cmd);
+char	**ft_ccmd(char **cmd);
+
 #endif
