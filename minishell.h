@@ -13,8 +13,7 @@
 #include <fcntl.h>
 #include <signal.h>
 
-#define S_QUOTE '\''
-#define D_QUOTE '"'
+
 
 typedef struct s_all
 {
@@ -24,20 +23,25 @@ typedef struct s_all
     t_list	*lenvp;
     int		hd;
    	int		*inf;
-    int		*outf;
+	int		n_inf;
+    int		*outf;	
+	int		n_outf;
+	char **delimiter;
+	int fd;
 } t_all;
 
 typedef struct s_p {
-	int		infile;
-	int		outfile;
-	char	path;
 	char	**splitpaths;
-	int		**pipes;
-	int		size;
-	int		id;
-	char	**env_hold;
-	int		exit_value_hold;
+	char	**args_hold;
+	int	exit_value_hold;
+	int	node_n;
+	int ev;
 }	t_pipe;
+
+typedef struct s_var {
+	char **name;
+	int	i;
+} t_var;
 
 void	parse(char s);
 int		handle_errors(char *argv);
@@ -53,5 +57,15 @@ void	multiprocessing(t_list *l, char **envp);
 int		change_path(char *name_folder ,char **env);
 int		is_builtin(char *cmd);
 char	**ft_ccmd(char **cmd);
-
+int		*sttc_var(void);
+int		check_dollar(t_list *l);
+void	check_outfiles(t_list *list);
+int		ft_strcmp(const char *s1, const char *s2);
+void	check_heredoc(t_list *l);
+void    take_quotes(char *s, char c);
+void	check_var(t_list *l);
+void	get_var_value(char *s, t_var *data);
+char **realloc_char(char **s, int size);
+int	var_dec(t_list *l, t_var *data);
+int	ft_getsize(char *s);
 #endif

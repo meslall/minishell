@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 00:21:02 by omeslall          #+#    #+#             */
-/*   Updated: 2022/06/11 10:53:28 by skadi            ###   ########.fr       */
+/*   Created: 2022/06/11 10:45:50 by omeslall          #+#    #+#             */
+/*   Updated: 2022/06/13 14:55:31 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"../minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int ft_pwd()
 {
-	t_list	*last;
-
-	last = *lst;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	while (last->next != NULL)
-	{
-		last = last->next;
-	}
-	last->next = new;
-	new->prev = last;
+    char *path;
+	path = getcwd(NULL,0);
+    printf("{%s}\n",path);
+    return(0);
 }

@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   infile_outfiles.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 20:50:32 by omeslall          #+#    #+#             */
-/*   Updated: 2022/06/25 23:26:05 by skadi            ###   ########.fr       */
+/*   Created: 2022/06/10 18:12:29 by skadi             #+#    #+#             */
+/*   Updated: 2022/06/11 15:48:10 by skadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "minishell.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t n)
+void    read_from_infile(t_list *l)
 {
-	size_t	j;
-	size_t	i;
+    int i;
 
-	i = 0;
-	while (src[i])
-		i++;
-	if (n == 0)
-		return (i);
-	j = 0;
-	printf("src %s \n", dest);
-	while (src[j] != '\0' && j < n - 1)
-	{
-	printf("inside loop \n");
-		dest[j] = src[j];
-		j++;
-	printf("inside loop2 \n");
-	}
-	dest[j] = '\0';
-	return (i);
+    i = 0;
+    while(l)
+    {
+        if(((t_all *)temp->content)->n_inf > 1)
+        {
+            
+        }
+        l = l->next;
+    }
 }

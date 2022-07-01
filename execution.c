@@ -6,96 +6,153 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/06/04 21:08:30 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/01 16:36:39 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
-#include<unistd.h>
-int	ft_strcmp(const char *s1, const char *s2)
+
+void	take_quotes(char *s, char c)
 {
-	while (*s1 != '\0' || *s2 != '\0')
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(s[i])
 	{
-		if (*s1 != *s2)
-			return (*(unsigned char *)s1 - *(unsigned char *)s2);
-		s1++;
-		s2++;
+		if(s[i] == c)
+		{
+			i++;
+			while(s[i] !=  c && s[i])
+			{
+				s[i - 1] = s[i];
+				i++;
+			}
+			s[i - 1] = '\0';
+			j = i - 1;
+			while(s[i] && s[i] == c)
+				i++;
+			while(s[i] != c && s[i])
+			{
+				s[j] = s[i];
+				i++;
+				j++;
+			}
+			while(s[j])
+			{
+				s[j] = '\0';
+				j++;
+			}
+		}
+		if(i < (int)ft_strlen(s))
+			i++;
 	}
-	return (0);
 }
 
-// void	executing(t_pipe *p, char **args)
-// {
-// 	int	i;
-// 	char *tmp;
-// 	char *cmd;
+void	check_quotes(t_list *l)
+{
+	int i;
+	char **s;
 
-// 	fprintf(stdout,"this is execution\n");
-// 	i = 0;
+	while(l)
+	{
+		i = 0;
+		s = ((t_all *)l->content)->ccmd;
+		while(s[i])
+		{
+			if(ft_cmp(s[i], '"'))
+				take_quotes(s[i], '"');
+			if (ft_cmp(s[i], 39))
+				take_quotes(s[i], 39);
+			
+			i++;
+		}
+		l = l->next;
+	}
+}
+
+void print_error(char **s, t_pipe *p)
+{
+	if(p->ev == 127 && s[0])
+	{
+		if(s[1])
+			printf("%s %s : command not found\n", s[0], s[1]);
+		else
+			printf("%s : command not found\n", s[0]);
+	}
+	else if(p->ev == 126 && s[0])
+	{
+		if(s[1])
+			printf("%s %s : permission denied\n", s[0], s[1]);
+		else
+			printf("%s : permission denied\n", s[0]);
+	}
+		
+}
+char *get_ev(t_pipe *p, t_list *l)
+{
+	int		i;
+	char	**env;
+	char *tmp;
+    char *cmd;
+
+	env = ((t_all *)l->content)->envp;
+	i = 0;
+	check_quotes(l);
 	
-// 	while (p->splitpaths[i])
-// 		{
-// 			tmp = ft_strjoin(p->splitpaths[i], "/");
-// 			cmd = ft_strjoin(tmp, args[0]);
-// 			free(tmp);
-// 			if (!access(cmd, X_OK))
-// 				execve(cmd, args, p->env_hold);
-// 			i++;
-// 		}
-// }
+	while (p->splitpaths[i])
+	{
+		cmd = ((t_all *)l->content)->ccmd[0];
+		tmp = ft_strjoin(p->splitpaths[i], "/");
+		cmd = ft_strjoin(tmp, cmd);
+		free(tmp);
+		p->ev = 0;
+		if (access(cmd, F_OK) == 0)
+		{
+			if (access(cmd, X_OK) == 0)
+				return (cmd);
+			else
+			p->ev = 126;
+		}
+		else
+			p->ev = 127;
+		i++;
+	}
+	return(NULL);
+}
 
-// void	forking(int in, int out, char **args, t_pipe *p)
-// {
-// 	int		child;
+int	*sttc_var(void)
+{
+	static int i;
+
+	return (&i);
+}
+
+void set_sttc(int i)
+{
+	int *p;
+
+	p = (sttc_var());
+	*p = i;
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t i;
 	
-// 	child = fork();
-//  	if (child == 0)
-//  	{
-//  		if (in != 0)
-//  		{
-//  			dup2 (in, 0);
-// 			close (in);
-//  		}
-//  		if (out != 1)
-//  		{
-//  			dup2 (out, 1);
-// 			close (out);
-//  		}
-// 		executing(p, args);
-// 	}
-// }
+	i = 0;
+	if(!s1 || !s2)
+		return(0);
+	if(ft_strlen(s1) != ft_strlen(s2))
+		return(0);
+	while (s1[i] != '\0' && s2[i] != '\0' && s2[i] == s1[i])
+		i++;
+	if (i < ft_strlen(s1))
+		return (0);
+	return (1);
+}
 
-
-// void	exit_statu(t_list *l , int re)
-// {
-// 	if(!ft_strcmp(((t_all *)l->content)->cmd[0], "$?") && ft_lstsize(l) == 1)
-// 	{
-// 		printf("command not found %i\n", re);
-// 	}
-// }
-
-// void	ft_exec(t_list *l, int re, char **env)
-// {
-
-// 	t_pipe p;
-// 	get_path(env, &p);	
-// 	int	i;
-// 	int in;
-// 	i = 0;
-// 	in = 0;
-// 	p.env_hold = env;
-// 	//exit_statu(l, re);
-// 	while(l)
-// 	{
-// 		pipe(p.fd);
-// 		forking(in, p.fd[1], ((t_all *)l->content)->cmd ,&p);
-// 		close(p.fd[1]);
-// 		in = p.fd[0];
-// 		i++;
-// 		l = l->next;
-// 	}
-// 	while(wait(&re) != -1);
-// }
 void	get_path(char **env, t_pipe *p)
 {
 	int	i;
@@ -114,107 +171,82 @@ void	get_path(char **env, t_pipe *p)
 		exit (write(2, "error\n", 6));
 }
 
- void	executing(t_pipe *p, char **args)
-{
-	int	i;
-	char *tmp;
-	char *cmd;
-
-	i = 0;
-	  printf("edrgergre\n");
-	while (p->splitpaths[i])
-		{
-			tmp = ft_strjoin(p->splitpaths[i], "/");
-			cmd = ft_strjoin(tmp, args[0]);
-			free(tmp);
-			if (!access(cmd, X_OK))
-				if(execve(cmd, args, p->env_hold))
-					exit(0);
-			i++;
-		}
-}
-
-// void spawn_proc (int in, int out)
-// {
- 
-//     //   if (in != 0)
-//     //     {
-          
-//     //       close (in);
-      	
-// }
-
-
 void ft_exec (t_list *l, char **env)
 {
-  int fd [2];
-  t_pipe p;
+   int fd [2];
+   t_pipe p;
    int i = 0;
    int j = 0;
-//    char *tmp;
-//   char *cmd;
-  int n = ft_lstsize(l);
-  int in = 0;
-  get_path(env, &p);
+  
+   int n = ft_lstsize(l);
+   int in = 0;
+   int	node = 0;
+   int ev = 0;
+   int n_inf;
+   get_path(env, &p);
+   
+  if(check_dollar(l))
+	return;
+  else
+  {
 	while(l)
 	{
+		
+		n_inf = ((t_all *)l->content)->n_inf;
 		pipe(fd);
 		i = 0;
 		if(fork() == 0)
-		 {
-			 if(n == 1)
-			 {
-				dup2(((t_all *)l->content)->inf[0], 0);
-		 	  close (fd[1]);
-			  close (fd[0]);
-			 }
-			else if(j == 0 && n > 1)
-			 {
-			  dup2(((t_all *)l->content)->inf[0], 0);
-			  dup2(fd[1], 1);
-		 	  close (fd[1]);
-			  close (fd[0]);
-			 }
-			 
+		{
 			if(j < n - 1)
-			  {dup2(in, 0);
-			  dup2(fd[1], 1);
-		 	  close (fd[1]);
-			  close (fd[0]);}
+			{
+				if(((t_all *)l->content)->hd)
+					dup2(((t_all *)l->content)->fd, 0);
+				else if(n_inf == 0)
+					dup2(in, 0);
+				else
+					dup2(((t_all *)l->content)->inf[n_inf - 1], 0);
+				dup2(fd[1], 1);
+				close (fd[1]);
+				close (fd[0]);
+			}
 			else
 			{
-			  dup2(in, 0);
-		 	  close (fd[1]);
-			  close (fd[0]);
+				if(((t_all *)l->content)->hd)
+					dup2(((t_all *)l->content)->fd, 0);
+				else if(n_inf == 0)
+					dup2(in, 0);
+				else
+					dup2(((t_all *)l->content)->inf[n_inf - 1], 0);
+				dup2(((t_all *)l->content)->outf[0], 1);
+				close (fd[1]);
+				close (fd[0]);
 			}
-			if(is_builtin(((t_all *)l->content)->cmd[0]))
-				change_path(((t_all *)l->content)->cmd[1],((t_all *)l->content)->envp);
-			else
+		 	if(!get_ev(&p, l))
 			{
-		 		while (p.splitpaths[i])
-		 		{
-		 		// 	tmp = ft_strjoin(p.splitpaths[i], "/");
-		 		// 	cmd = ft_strjoin(tmp, ((t_all *)l->content)->cmd[0]);
-		 		// 	free(tmp);
-		 		// 	if (!access(cmd, X_OK))
-		 		// 	execve(cmd, ((t_all *)l->content)->cmd, env);
-		 		// 	i++;
-		 		}
+				print_error(((t_all *)l->content)->ccmd, &p);
+				exit(p.ev);
 			}
-		 }
-		in = fd[0];
+			else
+				execve(get_ev(&p, l), ((t_all *)l->content)->ccmd, env);
+		}
+		in = dup(fd[0]);
 		close (fd[1]);
+		close (fd[0]);
 		l = l->next;
 		j++;
+		node++;
 	}
 	i = 0;
 	while(i < n)
 	{
-		wait(NULL);
+		wait(&ev);
 		i++;
 	}
+	
+	if(WIFEXITED(ev))
+	{
+		set_sttc(WEXITSTATUS(ev));
+	}
+	// printf("\n");
+	}
 }
-
-
-
-

@@ -132,7 +132,7 @@ int	handle_pipe(char *argv)
 	{
 		if(argv[i] == '|')
 		{
-			if(argv[i + 1] == '|' || argv[i - 1] == '|' 
+			if((argv[i + 1] == '|' &&  argv[i - 1] == '|' )
 				|| argv[i - 1] == '<')
 			{
 				printf("parse error near `|' \n");

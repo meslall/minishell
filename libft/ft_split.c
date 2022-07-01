@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 19:21:14 by omeslall          #+#    #+#             */
-/*   Updated: 2022/06/07 13:41:07 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:55:35 by skadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ static int	count_words(char const *s, char c)
 			if(qout == 0 || s[i] == temp)
 				qout++;
 		}
-		else if (s[i] != c && flag == 0)
+		if(qout == 1 &&(s[i + 1] == '"' || s[i + 1] == 39) && s[i + 1] != temp)
+		{
+				flag = 1;
+				count++;
+		}
+		else if (s[i] != c && (flag == 0 || qout == 1))
 		{
 			flag = 1;
 			count++;
@@ -118,6 +123,8 @@ static char	**itre(char const *s, char c, char **array)
 				qout++;
 			
 		}
+		if(s[i] != c &&(qout == 1 &&(s[i + 1] == '"' || s[i + 1] == 39) && s[i + 1] != temp))
+			k = i;
 		if (s[i] != c && k < 0)
 			k = i;
 		else if ((s[i] == c || i == size) && k >= 0 && (qout == 0 || qout == 2))
@@ -125,7 +132,6 @@ static char	**itre(char const *s, char c, char **array)
 			array[j] = word_in(s, k, i);
 			k = -1;
 			qout = 0;
-			type = 0;
 			j++;
 		}
 		i++;

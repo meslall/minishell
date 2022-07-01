@@ -3,16 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 19:07:56 by omeslall          #+#    #+#             */
-/*   Updated: 2022/06/06 15:58:16 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/06/26 00:47:58 by skadi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void converter(char **envp,t_all *all)
+int	ft_getsize(char *s)
+{
+	int	i;
+
+	i = 0;
+	while(s[i])
+		i++;
+	return(i);
+}
+
+int get_size_double(char **s)
+{
+	int	i;
+
+	i = 0;
+	while(s[i])
+		i++;
+	return(i);
+}
+
+char **realloc_char(char **s, int size)
+{
+    char **reallocated;
+    int size_init;
+	int	i;
+	
+	i = 0;
+    size_init = get_size_double(s);
+	if(size_init >= size)
+		return(s);
+    reallocated = (char **)ft_calloc(size, sizeof(char *));
+	while(s[i])
+	{
+		reallocated[i] = ft_calloc(ft_strlen(s[i]), sizeof(char));
+		reallocated[i] = s[i];
+		i++;
+	}
+    free(s);
+    return (reallocated);
+}
+
+
+void converter(char **envp, t_all *all)
 {
 	int i;
 	t_list *temp;
@@ -39,30 +81,18 @@ t_all *ft_init(t_all *all)
 	return(temp);
 }
 
-int check_qoute(char *str)
-{
-	int i = 0;
-	
-	while (str[i])
-	{
-		if(str[i] == '"' || str[i] == 39)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char *ft_redi(char *str, int *a)
 {
-	int i = 0;
-	int closed = 0;
+	int i;
+	int closed;
 	char temp;
 	char *c;
 	char *s;
 
+
 	closed = 0;
 	i = 0;
-	s = ft_strdup(" ");
+	s = " ";
 	c = ft_strdup(" ");
 	while (str[i])
 	{
@@ -72,11 +102,11 @@ char *ft_redi(char *str, int *a)
 			break;
 		}
 		
-		if(str[i] == D_QUOTE || str[i] == S_QUOTE)
+		if(str[i] == '"' || str[i] == 39)
 		{
 			if (closed == 2)
 				closed = 0;
-			if(closed == 0)
+			if(closed == 0 && str[i])
 				temp = str[i];
 			if(closed == 0 || temp == str[i])
 				closed++;
@@ -97,7 +127,7 @@ char *ft_redi(char *str, int *a)
 		s = ft_strjoin(s, c);
 		i++;
 	}
-	// printf("in : %s\n",s);
+	free(c);
 	return(s);
 }
 
@@ -106,16 +136,21 @@ char **ft_ccmd(char **cmd)
 	int i;
 	int a;
 	char *temp;
+	char **s;
+	char *fr;
 	
 	i = 0;
 	a = 0;
-	temp = ft_strdup(" ");
+	temp = " ";
 	while (cmd[i])
 	{
-		// printf("before : %s\n",cmd[i]);
-		temp = ft_strjoin(temp, ft_redi(cmd[i],&a));
-		// printf("after : %s\n",temp);
+		fr = ft_redi(cmd[i],&a);
+		temp = ft_strjoin(temp, fr);
+		if(!ft_cmp(cmd[i], '>') && !ft_cmp(cmd[i], '<'))
+			free(fr);
 		i++;
 	}
-	return (ft_split(temp,' '));
+	s = ft_split(temp, 32);
+	free(temp);
+	return (s);
  }

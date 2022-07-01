@@ -3,19 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
+#    By: skadi <skadi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/06/06 09:15:28 by omeslall         ###   ########.fr        #
+#    Updated: 2022/06/29 19:25:22 by skadi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c error_handling.c minishell_utils.c redirections.c execution.c cd.c\
+SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c\
 
-CC = @gcc -g -lreadline 
-# -fsanitize=address
+CC = @gcc -g -lreadline
 
 CFLAGS = -Wall -Wextra -Werror
 
