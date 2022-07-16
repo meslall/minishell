@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/01 13:57:22 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:39:51 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 t_list *ft_filtre(char *line, t_all *all)
 {
 	t_list *l;
+	t_all *tempp;
 	t_list *temp;
 	char **pipe;
 	char **sp;
@@ -42,17 +43,23 @@ t_list *ft_filtre(char *line, t_all *all)
 	
 
 	l = NULL;
+	sp = NULL;
 	temp = NULL;
+	tempp = NULL;
 	pipe = NULL;
 	pipe = ft_split(line,'|');
+	if(!pipe)
+		return(NULL);
 	while (pipe[i])
 	{	
-		all = ft_init(all);	
-		temp = ft_lstnew(all);
 		sp = ft_split(pipe[i], 32);
+		if(!(*sp))
+			return(NULL);
+		tempp = ft_init(all);
+		temp = ft_lstnew(tempp);
 		k = 0;
 		((t_all *)(temp->content))->cmd = sp;
-		((t_all *)(temp->content))->ccmd = ft_ccmd(sp);
+		((t_all *)(temp->content))->ccmd = ft_ccmd(sp);//here
 		ft_lstadd_back(&l,temp);
 		i++;
 	}
@@ -63,26 +70,29 @@ t_list *ft_filtre(char *line, t_all *all)
 void    minishell(char *line, t_all *all, char **env, t_var *var)
 {
 	t_list *filtre;
-	(void) env;
+	// (void) env;
 	int j;
 
 	j = 0;
 	filtre = ft_filtre(line,all);
+	if(!filtre)
+		return;
 	check_redirections(filtre);
 	check_outfiles(filtre);
-	check_heredoc(filtre);
+	check_heredoc(filtre);//cat << end
 	check_var(filtre);
 	j = var_dec(filtre, var);
     if (!j)
 		ft_exec(filtre, env);
-	// t_list *tmp;
-	//  tmp = ((t_all *)(filtre->content))->lenvp;
-    //  //while(tmp)
-	// //{
-	//  	tmp = ft_lstlast(((t_all *)(filtre->content))->lenvp);
-	//  	printf("%s\n", (char *)tmp->content);
-	//  	//tmp = ((t_all *)(filtre->content))->lenvp->next;
-	// // }
+	char **tmp;
+	int o = 0;
+	// int k =0;
+	tmp = ((t_all *)filtre->content)->ccmd;
+    while(tmp[o])
+	{
+		printf("########%s##########\n",tmp[o]);
+		o++;
+	}
 }
 
 int main(int ac,char **av,char **envp)
@@ -111,7 +121,7 @@ int main(int ac,char **av,char **envp)
 				add_history (line);
 			if(line)
 			{
-				if(handle_errors(line))
+				if(handle_errors(line))// "> " -> error or ">> "
 					minishell(line, all, envp, var);
 			}
 		}

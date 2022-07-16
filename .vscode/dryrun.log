@@ -1,8 +1,7 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/omeslall/Desktop/minishell'
+make: Entering directory `/Users/omeslall/Desktop/kl'
 cd libft && make && make bonus && cd ..
- 
-gcc -g -lreadline  -Wall -Wextra -Werror libft/libft.a main.c error_handling.c minishell_utils.c redirections.c execution.c cd.c  -o minishell
+gcc -g -lreadline -Wall -Wextra -Werror libft/libft.a main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c  -o minishell
 echo "\033[0;32m®minishell CREATED 🐲\033[0m"
-make: Leaving directory `/Users/omeslall/Desktop/minishell'
+make: Leaving directory `/Users/omeslall/Desktop/kl'
  

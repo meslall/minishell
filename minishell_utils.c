@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 19:07:56 by omeslall          #+#    #+#             */
-/*   Updated: 2022/06/26 00:47:58 by skadi            ###   ########.fr       */
+/*   Updated: 2022/07/15 20:13:38 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ char **ft_ccmd(char **cmd)
 	{
 		fr = ft_redi(cmd[i],&a);
 		temp = ft_strjoin(temp, fr);
-		if(!ft_cmp(cmd[i], '>') && !ft_cmp(cmd[i], '<'))
-			free(fr);
+		// if(!ft_cmp(cmd[i], '>') && !ft_cmp(cmd[i], '<'))
+		// free(fr);//here
 		i++;
 	}
 	s = ft_split(temp, 32);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 09:43:36 by zdasser           #+#    #+#             */
-/*   Updated: 2022/06/29 19:58:18 by skadi            ###   ########.fr       */
+/*   Updated: 2022/07/15 13:06:59 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_count_infiles(char **s)
 		j = 0;
 		while (s[i][j])
 		{
-			if (s[i][j] == '<' && s[i][j + 1] == '<')
-				j++;
 			if (s[i][j] == '<' && s[i][j + 1] != '<')
 				count++;
+			if (s[i][j] == '<' && s[i][j + 1] == '<')
+				j++;
 			j++;
 		}
 		i++;
@@ -46,7 +46,7 @@ void	handle_multi_infiles(char *s, t_list *list, int *count)
 	int j;
 	int i;
 
-
+	infile = NULL;
 	i = 0;
 	j = 0;
 
@@ -70,7 +70,7 @@ void	handle_multi_infiles(char *s, t_list *list, int *count)
 		if (i)
 			j += i - 1;
 		j++;
-		if (j > (int)ft_strlen(s))
+		if (j > (int)ft_strlen(s))// delete
 			j = ft_strlen(s);
 	}
 	
@@ -82,7 +82,7 @@ void	check_redirections(t_list *list)
 	int i;
 	char **s;
 	char *infile;
-	int count;
+	int count = 0;
 	int redir;
 
 	while (list)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outfiles.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skadi <skadi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 11:15:47 by zdasser           #+#    #+#             */
-/*   Updated: 2022/06/24 22:08:32 by skadi            ###   ########.fr       */
+/*   Updated: 2022/07/15 20:45:56 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int	ft_count_outfiles(char **s)
 		j = 0;
 		while (s[i][j])
 		{
-			if (s[i][j] == '>' && s[i][j + 1] != '>')
+			if (s[i][j] == '>' && s[i][j + 1] != '>')// count >> ??
 				count++;
 			j++;
 		}
 		i++;
 	}
+	printf(";;;;%d\n",count);
 	return (count);
 }
 
@@ -108,7 +109,9 @@ void	check_outfiles(t_list *list)
 	char **s;
 	int count;
 	int redir = 0;
-
+	
+	i = 0;
+	count = 0;
 	while (list)
 	{
 		       
@@ -121,7 +124,7 @@ void	check_outfiles(t_list *list)
 			((t_all *)list->content)->n_outf = count;
 			handle_multi_outfiles(s, list, &redir);
 		}
-		 
+		
 		else if (!count)
 		{
 			((t_all *)list->content)->outf = (int *)ft_calloc(1, sizeof(int));

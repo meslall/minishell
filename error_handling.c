@@ -46,6 +46,17 @@ char	quotes_exist(char *argv, size_t *i)
 	return(0);
 }
 
+int ft_sperror(char *av, int *i)
+{
+	while (av[*i])
+	{
+		if(av[*i] != ' ')
+			return(1);
+		*i += 1;
+	}
+	return(0);
+}
+
 int red_error(int *i, int *j, char *argv)
 {
 	int error;
@@ -57,8 +68,9 @@ int red_error(int *i, int *j, char *argv)
 	{
 		*i += 1;
 		*j += 1;
-		if((argv[*i] == c1 && argv[*i - 1] == c2) || \
-			(argv[*i] == c2 && argv[*i - 1] == c1))
+		if((argv[*i] == c1 && argv[*i - 1] == c2) ||
+			(argv[*i] == c2 && argv[*i - 1] == c1)||
+			(!ft_sperror(argv ,i)))
 		 	error = 1;
 	}
 	if(!ft_isalnum(argv[*i]))
@@ -95,7 +107,6 @@ int handle_redirections(char *argv, size_t *j)
 int	quotes(char *argv)
 {
 	size_t i;
-	int count = 0;
 
 	i = 0;
 	size_t j = 0;
@@ -107,16 +118,12 @@ int	quotes(char *argv)
 		{
 			j++;
 			while(argv[j] && argv[j] != c)
-			{
-				if(argv[j] == c)
-					count++;
 				j++;
-			}
-			if( j == ft_strlen(argv) && !count)
+			if( j == ft_strlen(argv))
 			{
 				write(1, "Error unclosed quotes\n", 23);
 				return(0);
-			}	
+			}
 		}
 		i = j + 1;
 	}
@@ -126,12 +133,34 @@ int	quotes(char *argv)
 int	handle_pipe(char *argv)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while(argv[i])
 	{
 		if(argv[i] == '|')
 		{
+			while (j < i && argv[j] == ' ')
+				j++;
+			if (j == i)
+			{
+				printf("parse error near `|' \n");
+				return (0);
+			}
+			j = i + 1;
+			while (argv[j] && argv[j] == ' ')
+				j++;
+			if (j == (int)ft_strlen(argv))
+			{
+				printf("parse error near `|' \n");
+				return (0);
+			}
+			if (!ft_isalnum(argv[i - 1]) || !ft_isalnum(argv[i + 1]))
+			{
+				printf("parse error near `|' \n");
+				return(0);
+			}
 			if((argv[i + 1] == '|' &&  argv[i - 1] == '|' )
 				|| argv[i - 1] == '<')
 			{
@@ -164,7 +193,7 @@ int	handle_errors(char *argv)
 		}
 		if (!handle_redirections(argv, &i))
 		{
-			write(1, "syntax error near unexpected token\n", 36);
+			printf("syntax error near unexpected token `newline'\n");
 			return(0);
 		}
 		i++;
