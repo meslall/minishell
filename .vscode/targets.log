@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Sat Jul 16 17:49:41 2022
+# Make data base, printed on Sun Jul 17 14:57:39 2022
 
 # Variables
 
@@ -40,17 +41,15 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.VaM41o3Cub/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.5rE6A9F2Jo/Render
 # environment
-PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.p4l0yrvXMI/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.jdAAtMw3or/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -69,8 +68,6 @@ VSCODE_CODE_CACHE_PATH = /Users/omeslall/Library/Application Support/Code/Cached
 LOGNAME = omeslall
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-ZSH = /Users/omeslall/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -95,8 +92,6 @@ USER = omeslall
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 13)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -132,8 +127,6 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
-PAGER = less
-# environment
 LC_ALL = C
 # environment
 SECURITYSESSIONID = 186a8
@@ -148,9 +141,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 91034
+VSCODE_PID = 12812
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=1/95=1%
+# Load=65/1024=6%, Rehash=0, Collisions=1/91=1%
 
 # Pattern-specific Variable Values
 
@@ -158,9 +151,9 @@ VSCODE_PID = 91034
 
 # Directories
 
-# . (device 16777227, inode 7352606): 26 files, no impossibilities.
+# . (device 16777227, inode 7352606): 25 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 25 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -202,7 +195,7 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-16 17:47:09
+#  Last modified 2022-07-16 20:57:41
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 28):
@@ -253,6 +246,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jul 16 17:49:41 2022
+# Finished Make data base on Sun Jul 17 14:57:39 2022
 
  

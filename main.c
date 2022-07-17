@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/15 20:39:51 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:57:06 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void    minishell(char *line, t_all *all, char **env, t_var *var)
 		ft_exec(filtre, env);
 	char **tmp;
 	int o = 0;
-	// int k =0;
 	tmp = ((t_all *)filtre->content)->ccmd;
     while(tmp[o])
 	{

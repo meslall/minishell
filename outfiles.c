@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 11:15:47 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/15 20:45:56 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:57:34 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	ft_count_outfiles(char **s)
 		}
 		i++;
 	}
-	printf(";;;;%d\n",count);
 	return (count);
 }
 
@@ -52,7 +51,7 @@ void	handle_long(char *s, t_list *list)
 			while (s[i] != 32 && s[i] != '\n' && s[i] != '>' && s[i])
 				i++;
 			outfile = ft_substr(s, j + 1, i - 1);
-			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_TRUNC, 0755);
+			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_TRUNC, 0777);
 			free(outfile);
 			count++;
 		}
@@ -62,7 +61,7 @@ void	handle_long(char *s, t_list *list)
 			while (s[i] != 32 && s[i] != '\n' && s[i] != '>' && s[i])
 				i++;
 			outfile = ft_substr(s, j + 2, i - 1);
-			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_APPEND, 0755);
+			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_APPEND , 0777);
 			free(outfile);
 			count++;
 		}
@@ -95,6 +94,13 @@ void handle_multi_outfiles(char **s, t_list *list, int *count)
 				((t_all *)list->content)->outf[*count] = open(outfile, O_CREAT | O_RDWR | O_APPEND, 0755);
 				*count += 1;
 				i++;
+		}
+		else if(ft_strlen(s[i]) == 1 && s[i][j] == '>')
+		{
+			outfile = s[i + 1];
+			((t_all *)list->content)->outf[*count] = open(outfile, O_CREAT | O_RDWR |  O_TRUNC, 0755);
+			*count += 1;
+			i++;
 		}
 		else
 			handle_long(s[i], list); 

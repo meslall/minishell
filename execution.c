@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/01 16:36:39 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/17 17:27:59 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,15 @@ char *get_ev(t_pipe *p, t_list *l)
 	while (p->splitpaths[i])
 	{
 		cmd = ((t_all *)l->content)->ccmd[0];
+		if (ft_strchr(cmd, '/'))
+        {
+            if (access(cmd, X_OK) != 0)
+            {
+                printf("%s: No such file or directory\n", cmd);
+                exit(1);
+            }
+            return (cmd);
+        }
 		tmp = ft_strjoin(p->splitpaths[i], "/");
 		cmd = ft_strjoin(tmp, cmd);
 		free(tmp);
