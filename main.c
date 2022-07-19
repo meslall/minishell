@@ -6,28 +6,28 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/16 20:57:06 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/18 23:28:09 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	handle_sigint(int sig)
-// {
-// 	if (sig != SIGINT)
-// 		return ;
-// 	printf("\n");
-// 	rl_on_new_line();
-// 	rl_replace_line("", 0);
-// 	rl_redisplay();
-// }
+void	handle_sigint(int sig)
+{
+	if (sig != SIGINT)
+		return ;
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
 
-// void	handle_sigquit(int sig)
-// {
-// 	if (sig != SIGQUIT)
-// 		return ;
-// 	rl_on_new_line();
-// }
+void	handle_sigquit(int sig)
+{
+	if (sig != SIGQUIT)
+		return ;
+	rl_on_new_line();
+}
 
 
 
@@ -84,14 +84,14 @@ void    minishell(char *line, t_all *all, char **env, t_var *var)
 	j = var_dec(filtre, var);
     if (!j)
 		ft_exec(filtre, env);
-	char **tmp;
-	int o = 0;
-	tmp = ((t_all *)filtre->content)->ccmd;
-    while(tmp[o])
-	{
-		printf("########%s##########\n",tmp[o]);
-		o++;
-	}
+	// char **tmp;
+	// int o = 0;
+	// tmp = ((t_all *)filtre->content)->ccmd;
+    // while(tmp[o])
+	// {
+	// 	printf("########%s##########\n",tmp[o]);
+	// 	o++;
+	// }
 }
 
 int main(int ac,char **av,char **envp)
@@ -102,8 +102,8 @@ int main(int ac,char **av,char **envp)
 
 	if (!av || !envp)
 		return(0);
-	// signal(SIGINT, handle_sigint);
-	// signal(SIGQUIT, handle_sigquit);
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
 	all = malloc(sizeof(t_all));
 	var = malloc(sizeof(t_var));
 	var->name = (char **)ft_calloc(2, sizeof(char *));
@@ -116,6 +116,8 @@ int main(int ac,char **av,char **envp)
 		while(1)
 		{
 			line = readline("\033[0;35mminishell:& \033[0;37m");
+			if (!line)
+				break;
 			if (line && *line)
 				add_history (line);
 			if(line)

@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/17 17:27:59 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:06:23 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,30 @@ void	check_quotes(t_list *l)
 	}
 }
 
-void print_error(char **s, t_pipe *p)
+void	print_error(char **s, t_pipe *p)
 {
-	if(p->ev == 127 && s[0])
+	if (p->ev == 127 && s[0])
 	{
-		if(s[1])
-			printf("%s %s : command not found\n", s[0], s[1]);
+		if (s[1])
+		{
+			write_err(s[0], s[1]);
+			ft_putstr_fd(" : command not found\n", 2);
+		}
 		else
-			printf("%s : command not found\n", s[0]);
+			write_err(s[0], " : command not found\n");
 	}
-	else if(p->ev == 126 && s[0])
+	else if (p->ev == 126 && s[0])
 	{
-		if(s[1])
-			printf("%s %s : permission denied\n", s[0], s[1]);
+		if (s[1])
+		{
+			write_err(s[0], s[1]);
+			ft_putstr_fd(" : permission denied\n", 2);
+		}
 		else
-			printf("%s : permission denied\n", s[0]);
+			write_err(s[0], " : permission denied\n");
 	}
-		
 }
+
 char *get_ev(t_pipe *p, t_list *l)
 {
 	int		i;
@@ -191,7 +197,7 @@ void ft_exec (t_list *l, char **env)
    int in = 0;
    int	node = 0;
    int ev = 0;
-   int n_inf;
+   int n_inf = 0;
    get_path(env, &p);
    
   if(check_dollar(l))
@@ -202,6 +208,11 @@ void ft_exec (t_list *l, char **env)
 	{
 		
 		n_inf = ((t_all *)l->content)->n_inf;
+		if (n_inf != 0 && ((t_all *)l->content)->inf[n_inf - 1] < 0)
+		{
+			printf("minishell: No such file or directory\n");
+			break;
+		}
 		pipe(fd);
 		i = 0;
 		if(fork() == 0)
@@ -215,6 +226,8 @@ void ft_exec (t_list *l, char **env)
 				else
 					dup2(((t_all *)l->content)->inf[n_inf - 1], 0);
 				dup2(fd[1], 1);
+				if (((t_all *)l->content)->outf[0] > 0)
+					dup2(((t_all *)l->content)->outf[0], 1);
 				close (fd[1]);
 				close (fd[0]);
 			}
@@ -256,6 +269,5 @@ void ft_exec (t_list *l, char **env)
 	{
 		set_sttc(WEXITSTATUS(ev));
 	}
-	// printf("\n");
 	}
 }

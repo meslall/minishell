@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skadi <skadi@student.42.fr>                +#+  +:+       +#+         #
+#    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/06/29 19:25:22 by skadi            ###   ########.fr        #
+#    Updated: 2022/07/18 23:30:12 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,10 @@ CC = @gcc -g -lreadline
 
 CFLAGS = -Wall -Wextra -Werror
 
+LFLAGS = -L ~/.brew/opt/readline/lib
+
+IFLAGS = -I ~/.brew/opt/readline/include
+
 LIBFT = libft/libft.a
 
 RM = @rm -f
@@ -26,7 +30,8 @@ all:		$(NAME)
 
 $(NAME):
 			@cd libft && make && make bonus && cd ..
-			$(CC) $(CFLAGS) $(LIBFT) $(SRC) -o $(NAME)
+			@stty -echoctl
+			$(CC) $(CFLAGS) $(LIBFT) $(SRC) -lreadline $(LFLAGS) $(IFLAGS) -o $(NAME)
 			@echo "\033[0;32m®minishell CREATED 🐲\033[0m"
 
 t:

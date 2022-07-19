@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Sun Jul 17 14:57:39 2022
+# Make data base, printed on Tue Jul 19 16:04:41 2022
 
 # Variables
 
@@ -18,6 +17,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 15)
 SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c 
+# makefile (from `Makefile', line 23)
+IFLAGS = -I ~/.brew/opt/readline/include
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -28,7 +29,7 @@ SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c c
 CURDIR := /Users/omeslall/Desktop/kl
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 23)
+# makefile (from `Makefile', line 27)
 RM = @rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
@@ -41,15 +42,15 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.5rE6A9F2Jo/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.cFPWMrryP2/Render
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.jdAAtMw3or/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.aYys6BnEiD/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -63,7 +64,7 @@ HOME = /Users/omeslall
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/omeslall/Library/Application Support/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /Users/omeslall/Library/Application Support/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # environment
 LOGNAME = omeslall
 # environment
@@ -80,7 +81,7 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 25)
 LIBFT = libft/libft.a
 # makefile (from `Makefile', line 17)
 CC = @gcc -g -lreadline
@@ -94,6 +95,8 @@ USER = omeslall
 NAME = minishell
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 21)
+LFLAGS = -L ~/.brew/opt/readline/lib
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
@@ -103,7 +106,7 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n0000gsc0003yb/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/omeslall/Library/Application Support/Code/1.69.0-main.sock
+VSCODE_IPC_HOOK = /Users/omeslall/Library/Application Support/Code/1.69.1-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -113,7 +116,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000016.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -129,7 +132,7 @@ MAKEFILES :=
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186a8
+SECURITYSESSIONID = 188db
 # automatic
 ^F = $(notdir $^)
 # default
@@ -141,9 +144,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 12812
+VSCODE_PID = 56359
 # variable set hash-table stats:
-# Load=65/1024=6%, Rehash=0, Collisions=1/91=1%
+# Load=67/1024=7%, Rehash=0, Collisions=2/93=2%
 
 # Pattern-specific Variable Values
 
@@ -151,9 +154,9 @@ VSCODE_PID = 12812
 
 # Directories
 
-# . (device 16777227, inode 7352606): 25 files, no impossibilities.
+# . (device 16777227, inode 7352606): 23 files, no impossibilities.
 
-# 25 files, no impossibilities in 1 directories.
+# 23 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -174,7 +177,7 @@ t:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 33):
+#  commands to execute (from `Makefile', line 38):
 	@./$(NAME)
 	
 
@@ -187,7 +190,7 @@ t:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-01 13:45:59
+#  Last modified 2022-07-18 23:30:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -195,12 +198,13 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-16 20:57:41
+#  Last modified 2022-07-19 00:59:39
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 28):
+#  commands to execute (from `Makefile', line 32):
 	@cd libft && make && make bonus && cd ..
-	$(CC) $(CFLAGS) $(LIBFT) $(SRC) -o $(NAME)
+	@stty -echoctl
+	$(CC) $(CFLAGS) $(LIBFT) $(SRC) -lreadline $(LFLAGS) $(IFLAGS) -o $(NAME)
 	@echo "\033[0;32m®minishell CREATED 🐲\033[0m"
 	
 
@@ -208,7 +212,7 @@ fclean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 38):
+#  commands to execute (from `Makefile', line 43):
 	@cd libft && make fclean && cd ..
 	$(RM) $(NAME)
 	@echo "\033[0;31mminishell DELETED 🗑"
@@ -229,7 +233,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 35):
+#  commands to execute (from `Makefile', line 40):
 	@cd libft && make clean && cd ..
 	
 
@@ -246,6 +250,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jul 17 14:57:39 2022
+# Finished Make data base on Tue Jul 19 16:04:41 2022
 
  

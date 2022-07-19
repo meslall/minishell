@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 19:19:49 by omeslall          #+#    #+#             */
-/*   Updated: 2021/11/10 19:46:02 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:06:47 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ void	ft_putstr_fd(char *s, int fd)
 			i++;
 		}
 	}
+}
+
+void    write_err(char *s1, char *s2)
+{
+            ft_putstr_fd(s1, 2);
+            ft_putstr_fd(s2, 2);
 }

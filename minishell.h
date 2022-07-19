@@ -26,22 +26,22 @@ typedef struct s_all
 	int		n_inf;
     int		*outf;	
 	int		n_outf;
-	char **delimiter;
-	int fd;
-} t_all;
+	char	**delimiter;
+	int		fd;
+}			t_all;
 
 typedef struct s_p {
 	char	**splitpaths;
 	char	**args_hold;
-	int	exit_value_hold;
-	int	node_n;
-	int ev;
-}	t_pipe;
+	int		exit_value_hold;
+	int		node_n;
+	int		ev;
+}			t_pipe;
 
 typedef struct s_var {
 	char **name;
 	int	i;
-} t_var;
+}		t_var;
 
 void	parse(char s);
 int		handle_errors(char *argv);
@@ -65,7 +65,7 @@ void	check_heredoc(t_list *l);
 void    take_quotes(char *s, char c);
 void	check_var(t_list *l);
 void	get_var_value(char *s, t_var *data);
-char **realloc_char(char **s, int size);
-int	var_dec(t_list *l, t_var *data);
-int	ft_getsize(char *s);
+char	**realloc_char(char **s, int size);
+int		var_dec(t_list *l, t_var *data);
+int		ft_getsize(char *s);
 #endif
