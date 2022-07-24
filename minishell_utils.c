@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 19:07:56 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/16 19:32:02 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/23 09:39:02 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_all *ft_init(t_all *all)
 	temp = malloc(sizeof(t_all));
 	temp->envp = all->envp;
 	temp->lenvp = all->lenvp;
+	temp->hd = 0;
 	return(temp);
 }
 
@@ -118,11 +119,18 @@ char *ft_redi(char *str, int *a)
 				*a = 1;
 			break;
 		}
-		if(str[i] == '>' && (closed == 0  || closed == 2))
+		else if((str[i] == '<' && str[i + 1] == '<')
+			&& (closed == 0  || closed == 2))
+		{
+			if(str[i + 2] == '\0')
+				*a = 1;
+			break;		
+		}
+		else if(str[i] == '<' && (closed == 0  || closed == 2))
 		{
 			if(str[i + 1] == '\0')
 				*a = 1;
-			break;		
+			break;
 		}
 		else if(str[i] == '<' && (closed == 0  || closed == 2))
 		{

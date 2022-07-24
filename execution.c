@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/19 16:06:23 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:36:13 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,17 @@ void	get_path(char **env, t_pipe *p)
 		exit (write(2, "error\n", 6));
 }
 
+void ft_execve(t_pipe *p,t_list *l, char **env)
+{
+	if(!get_ev(p, l))
+		{
+			print_error(((t_all *)l->content)->ccmd, p);
+			exit(p->ev);
+		}
+	else
+		execve(get_ev(p, l), ((t_all *)l->content)->ccmd, env);
+}
+
 void ft_exec (t_list *l, char **env)
 {
    int fd [2];
@@ -199,24 +210,23 @@ void ft_exec (t_list *l, char **env)
    int ev = 0;
    int n_inf = 0;
    get_path(env, &p);
-   
+   ev = 0;
   if(check_dollar(l))
 	return;
   else
   {
 	while(l)
 	{
-		
 		n_inf = ((t_all *)l->content)->n_inf;
-		if (n_inf != 0 && ((t_all *)l->content)->inf[n_inf - 1] < 0)
-		{
-			printf("minishell: No such file or directory\n");
-			break;
-		}
 		pipe(fd);
 		i = 0;
 		if(fork() == 0)
 		{
+			if (n_inf != 0 && ((t_all *)l->content)->inf[n_inf - 1] < 0)
+			{
+				printf("minishell: No such file or directory\n");
+				exit(1);
+			}
 			if(j < n - 1)
 			{
 				if(((t_all *)l->content)->hd)
@@ -243,6 +253,7 @@ void ft_exec (t_list *l, char **env)
 				close (fd[1]);
 				close (fd[0]);
 			}
+			// ft_execve(&p,l,env);
 		 	if(!get_ev(&p, l))
 			{
 				print_error(((t_all *)l->content)->ccmd, &p);
@@ -264,7 +275,6 @@ void ft_exec (t_list *l, char **env)
 		wait(&ev);
 		i++;
 	}
-	
 	if(WIFEXITED(ev))
 	{
 		set_sttc(WEXITSTATUS(ev));

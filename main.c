@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/18 23:28:09 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:37:30 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_list *ft_filtre(char *line, t_all *all)
 void    minishell(char *line, t_all *all, char **env, t_var *var)
 {
 	t_list *filtre;
-	// (void) env;
 	int j;
 
 	j = 0;
