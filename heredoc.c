@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 17:04:34 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/23 22:12:43 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/25 00:44:12 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,16 @@ void cmd_loop(t_list *l)
 			{
 				if ( ft_strlen(s[i]) == 2 && s[i][j] == '<' && s[i][j + 1] == '<')
 				{
-					delimiter = s[i + 1];//<< f<<a
+					if(ft_cmp(s[i+1],'<'))
+					{
+						while (s[i + 1][j] != 32 && s[i + 1][j] != '\n' && s[i + 1][j] != '<' 
+								&& s[i + 1][j] && s[i + 1][j] != '>')
+						j++;
+						delimiter = ft_substr(s[i + 1], 0, j);
+						get_delimiter(l, *s + j, &count);
+					}
+					else
+						delimiter = s[i + 1];//<< f<<a
 					((t_all *)l->content)->delimiter[count] = delimiter;
 					count++;
 				}

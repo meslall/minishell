@@ -3,6 +3,7 @@ make: Entering directory `/Users/omeslall/Desktop/kl'
 cd libft && make && make bonus && cd ..
 stty -echoctl
 gcc -g -lreadline -Wall -Wextra -Werror libft/libft.a main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c  -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -o minishell
+ 
 echo "\033[0;32m®minishell CREATED 🐲\033[0m"
 make: Leaving directory `/Users/omeslall/Desktop/kl'
  
