@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/21 16:36:13 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:57:49 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void ft_exec (t_list *l, char **env)
 		i = 0;
 		if(fork() == 0)
 		{
-			if (n_inf != 0 && ((t_all *)l->content)->inf[n_inf - 1] < 0)
+			if (n_inf != 0 && (((t_all *)l->content)->inf[n_inf - 1] < 0))
 			{
 				printf("minishell: No such file or directory\n");
 				exit(1);

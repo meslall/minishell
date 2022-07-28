@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 11:15:47 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/16 20:57:34 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:29:52 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	handle_long(char *s, t_list *list)
 			i = j + 1;
 			while (s[i] != 32 && s[i] != '\n' && s[i] != '>' && s[i])
 				i++;
-			outfile = ft_substr(s, j + 1, i - 1);
+			outfile = ft_substr(s, j + 1, i);
 			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_TRUNC, 0777);
 			free(outfile);
 			count++;
@@ -60,7 +60,8 @@ void	handle_long(char *s, t_list *list)
 			i = j + 2;
 			while (s[i] != 32 && s[i] != '\n' && s[i] != '>' && s[i])
 				i++;
-			outfile = ft_substr(s, j + 2, i - 1);
+			outfile = ft_substr(s, j + 2, i);
+			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_APPEND, 0777);
 			((t_all *)list->content)->outf[count] = open(outfile, O_CREAT | O_RDWR | O_APPEND , 0777);
 			free(outfile);
 			count++;

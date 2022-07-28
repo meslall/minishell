@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 09:43:36 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/15 13:06:59 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/27 23:41:25 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	handle_multi_infiles(char *s, t_list *list, int *count)
 			i = j + 1;
 			while (s[i] != 32 && s[i] != '\n' && s[i] != '<' && s[i])
 				i++;
-			infile = ft_substr(s, j + 1, i - 1);
+			infile = ft_substr(s, j + 1, i);
 			((t_all *)list->content)->inf[*count] = open(infile, O_RDONLY);
 			free(infile);
 			*count += 1;

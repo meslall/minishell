@@ -6,13 +6,13 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 17:04:34 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/25 00:44:12 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:32:41 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void get_delimiter(t_list *l, char *s, int *count)
+int get_delimiter(t_list *l, char *s, int *count)
 {
 	int	i;
 	int j;
@@ -29,11 +29,12 @@ void get_delimiter(t_list *l, char *s, int *count)
 			while (s[j] != 32 && s[j] != '\n' && s[j] != '<' && s[j] && s[j] != '>')
 				j++;
 			delimiter = ft_substr(s, i + 2, j);
-			printf("====>%d<========>%s\n",j, delimiter);
 			take_quotes(delimiter, 39);
 			take_quotes(delimiter, '"');
 			((t_all *)(l->content))->delimiter[*count] = delimiter;
 		    *count+= 1;
+			if (s[j] == '<' && s[j + 1] == '<' && s[j + 2] == '\0')
+				return (1);
 		}
 		if (j)
 			i += j - 1;
@@ -41,6 +42,7 @@ void get_delimiter(t_list *l, char *s, int *count)
 		if (i > (int)ft_strlen(s))
 			i = ft_strlen(s);
 	}
+	return (0);
 }
 
 void cmd_loop(t_list *l)
@@ -64,7 +66,7 @@ void cmd_loop(t_list *l)
 			{
 				if ( ft_strlen(s[i]) == 2 && s[i][j] == '<' && s[i][j + 1] == '<')
 				{
-					if(ft_cmp(s[i+1],'<'))
+					if(ft_cmp(s[i + 1],'<'))
 					{
 						while (s[i + 1][j] != 32 && s[i + 1][j] != '\n' && s[i + 1][j] != '<' 
 								&& s[i + 1][j] && s[i + 1][j] != '>')
@@ -78,7 +80,11 @@ void cmd_loop(t_list *l)
 					count++;
 				}
 				else
-					get_delimiter(l, s[i], &count);
+				{
+					if(get_delimiter(l, s[i], &count))
+						printf("##############\n");
+						// get_delimiter(l, s[i + 1], &count);
+				}
 			}
 			i++;
 		}

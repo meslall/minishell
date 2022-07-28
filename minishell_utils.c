@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 19:07:56 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/23 09:39:02 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:49:34 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char *ft_redi(char *str, int *a)
 				*a = 1;
 			break;		
 		}
-		else if(str[i] == '<' && (closed == 0  || closed == 2))
+		else if(str[i] == '>' && (closed == 0  || closed == 2))
 		{
 			if(str[i + 1] == '\0')
 				*a = 1;
