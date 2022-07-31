@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/30 15:19:31 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:38:19 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,15 @@ void ft_exec (t_list *l, char **env)
 				if(is_builtin(*((t_all *)l->content)->ccmd))
 					ecxecuting_builtin(l);
 				else
-				execve(get_ev(&p, l), ((t_all *)l->content)->ccmd, env);
+				{
+					struct stat path_stat;
+					char *str = get_ev(&p, l);
+					stat(str, &path_stat);
+					if (!S_ISDIR(path_stat.st_mode))
+						execve(get_ev(&p, l), ((t_all *)l->content)->ccmd, env);
+					else
+						printf("%s: is a directory\n", str);
+				}
 			}
 		}
 		in = dup(fd[0]);

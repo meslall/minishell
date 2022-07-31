@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 10:45:50 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/30 15:42:32 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:33:30 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@ int ft_pwd()
     char *path;
 	path = getcwd(NULL,0);
     printf("{%s}\n",path);
+    // exit(0);
     return(0);
 }

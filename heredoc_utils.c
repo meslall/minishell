@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_var.c                                          :+:      :+:    :+:   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 11:19:51 by skadi             #+#    #+#             */
-/*   Updated: 2022/07/31 22:35:33 by kdoulyaz         ###   ########.fr       */
+/*   Created: 2022/07/31 23:05:53 by kdoulyaz          #+#    #+#             */
+/*   Updated: 2022/07/31 23:06:06 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void get_var(t_list *lenvp, char **var)
+char *h_get_var(t_list *lenvp, char **var)
 {
     char    *content;
     char    *tmp;
@@ -48,23 +48,12 @@ void get_var(t_list *lenvp, char **var)
         i++;
     }
     *var = tmp;
+    return (*var);
 }
 
-void check_var(t_list *l)
+char *h_check_var(t_list *env, char *l)
 {
-    char    **s;
-    int     i;
-
-    while(l)
-    {
-        i = 0;
-        s = ((t_all *)(l->content))->ccmd;
-        while(s[i])
-        {
-            if(ft_cmp(s[i], '$'))
-				get_var(((t_all *)(l->content))->lenvp, &s[i]);
-            i++;
-        }
-        l = l->next;
-    }
+    if(l[0] == '$')
+		return (h_get_var(((t_all *)(env->content))->lenvp, &l));
+    return (l);
 }

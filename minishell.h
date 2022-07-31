@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
@@ -57,6 +58,7 @@ void	multiprocessing(t_list *l, char **envp);
 int		change_path(char *name_folder ,char **env);
 int		is_builtin(char *cmd);
 char	**ft_ccmd(char **cmd);
+char 	*h_check_var(t_list *env, char *l);
 int		*sttc_var(void);
 int		check_dollar(t_list *l);
 void	check_outfiles(t_list *list);

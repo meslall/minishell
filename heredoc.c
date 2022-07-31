@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 17:04:34 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/30 13:32:03 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:15:21 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ void cmd_loop(t_list *l)
 						get_delimiter(l, *s + j, &count);
 					}
 					else
-						delimiter = s[i + 1];
+						delimiter = s[i + 1];//<< f<<a
 					((t_all *)l->content)->delimiter[count] = delimiter;
 					count++;
 				}
-						get_delimiter(l, s[i + 1], &count);
+				else
+				{
+					if(get_delimiter(l, s[i], &count))
+						printf("##############\n");
+						// get_delimiter(l, s[i + 1], &count);
+				}
 			}
 			i++;
 		}
@@ -101,12 +106,14 @@ void	check_heredoc(t_list *l)
 	char *c;
 	char *tmp;
 	char *line;
+	char *var;
 	char *input;
 	int fd[2];
 	char **split_line;
 
 	c = ft_strdup("\a");
 	tmp = NULL;
+	var = NULL;
 	line = "";
     cmd_loop(l);
 	while (l)
@@ -135,7 +142,8 @@ void	check_heredoc(t_list *l)
 			i = 0;
 			while(split_line[i])
 			{
-				ft_putstr_fd(split_line[i], fd[1]);  
+				var = h_check_var(l, split_line[i]);
+				ft_putstr_fd(var, fd[1]);  
 				ft_putstr_fd("\n", fd[1]);
 				i++;
 			}
