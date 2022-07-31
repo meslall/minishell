@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 16:29:17 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/27 22:57:49 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:19:31 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,12 @@ void ft_exec (t_list *l, char **env)
 				exit(p.ev);
 			}
 			else
+			{
+				if(is_builtin(*((t_all *)l->content)->ccmd))
+					ecxecuting_builtin(l);
+				else
 				execve(get_ev(&p, l), ((t_all *)l->content)->ccmd, env);
+			}
 		}
 		in = dup(fd[0]);
 		close (fd[1]);

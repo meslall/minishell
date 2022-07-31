@@ -6,13 +6,13 @@
 #    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/07/27 22:37:28 by omeslall         ###   ########.fr        #
+#    Updated: 2022/07/30 15:39:02 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c\
+SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c builtin/cd.c builtin/pwd.c \
 
 CC = @gcc -g -lreadline
 

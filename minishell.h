@@ -68,4 +68,6 @@ void	get_var_value(char *s, t_var *data);
 char	**realloc_char(char **s, int size);
 int		var_dec(t_list *l, t_var *data);
 int		ft_getsize(char *s);
+int		ecxecuting_builtin(t_list *l);
+int		ft_pwd();
 #endif

@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Thu Jul 28 06:09:49 2022
+# Make data base, printed on Sun Jul 31 14:43:50 2022
 
 # Variables
 
@@ -16,7 +17,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 15)
-SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c 
+SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c builtin/cd.c builtin/pwd.c 
 # makefile (from `Makefile', line 23)
 IFLAGS = -I ~/.brew/opt/readline/include
 # automatic
@@ -42,7 +43,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.WVgPt25cyx/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.PsJzRWRlWb/Render
 # environment
 PATH = /Users/omeslall/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -52,7 +53,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LOCuJNhoph/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.6eQyqTyT7f/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -126,7 +127,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2768
+XPC_SERVICE_NAME = com.microsoft.VSCode.1236
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -154,7 +155,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 34311
+VSCODE_PID = 3071
 # variable set hash-table stats:
 # Load=72/1024=7%, Rehash=0, Collisions=2/98=2%
 
@@ -164,9 +165,9 @@ VSCODE_PID = 34311
 
 # Directories
 
-# . (device 16777227, inode 7352606): 27 files, no impossibilities.
+# . (device 16777227, inode 7352606): 22 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -200,7 +201,7 @@ t:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-27 22:37:28
+#  Last modified 2022-07-30 15:39:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -208,7 +209,7 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-28 06:02:04
+#  Last modified 2022-07-30 15:50:05
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 32):
@@ -260,6 +261,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jul 28 06:09:49 2022
+# Finished Make data base on Sun Jul 31 14:43:50 2022
 
  

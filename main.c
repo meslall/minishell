@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:11:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/27 22:50:16 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:42:19 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void    minishell(char *line, t_all *all, char **env, t_var *var)
 		return;
 	check_redirections(filtre);
 	check_outfiles(filtre);
-	check_heredoc(filtre);//cat << end
+	check_heredoc(filtre);
 	check_var(filtre);
 	j = var_dec(filtre, var);
     if (!j)
@@ -121,7 +121,7 @@ int main(int ac,char **av,char **envp)
 				add_history (line);
 			if(line)
 			{
-				if(handle_errors(line))// "> " -> error or ">> "
+				if(handle_errors(line))// ("<< <<a") ---> syntax error near unexpected token `<<'
 					minishell(line, all, envp, var);
 			}
 		}

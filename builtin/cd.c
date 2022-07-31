@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 14:26:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/01 16:45:39 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:49:59 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int ecxecuting_builtin(t_list *l)
 	if(!(ft_strncmp(((t_all *)l->content)->ccmd[0],"cd", 2))
 		&& ft_strlen(((t_all *)l->content)->ccmd[0]) == 2)
 		change_path(((t_all *)l->content)->ccmd[1],((t_all *)l->content)->envp);
-	else if(!(ft_strncmp(((t_all *)l->content)->ccmd[0],"pwd", 3))
-			&& ft_strlen(((t_all *)l->content)->ccmd[0]) == 3)
-			ft_pwd();
-	else if(!(ft_strncmp(((t_all *)l->content)->ccmd[0],"echo", 4))
-			&& ft_strlen(((t_all *)l->content)->ccmd[0]) == 4)
-			ft_echo(((t_all *)l->content)->ccmd);
+	// else if(!(ft_strncmp(((t_all *)l->content)->ccmd[0],"pwd", 3))
+	// 		&& ft_strlen(((t_all *)l->content)->ccmd[0]) == 3)
+	// 		ft_pwd();
+	// else if(!(ft_strncmp(((t_all *)l->content)->ccmd[0],"echo", 4))
+	// 		&& ft_strlen(((t_all *)l->content)->ccmd[0]) == 4)
+	// 		ft_echo(((t_all *)l->content)->ccmd);
 	return(0);	
 }
 
@@ -71,5 +71,6 @@ int change_path(char *name_folder,char **env)
 	}
 	printf("daz mn hena\n");
 	chdir(new_path);
+	exit(0);
 	return 0;
 }

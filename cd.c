@@ -6,48 +6,48 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 14:26:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/07/01 16:40:13 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/30 15:23:36 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+// #include"minishell.h"
 
-int	is_builtin(char *cmd)
-{
-	if (!(ft_strncmp(cmd,"cd",2)) && ft_strlen(cmd) == 2)
-		return (1);
+// int	is_builtin(char *cmd)
+// {
+// 	if (!(ft_strncmp(cmd,"cd",2)) && ft_strlen(cmd) == 2)
+// 		return (1);
 
-	return 0;
-}
+// 	return 0;
+// }
 
-char *find_home(char **env)
-{
-	int i;
-	int j;
-	i = 0;
-	j = 0;
-	while(env[i])
-    {
-        if(ft_strncmp(env[i], "HOME=", 5) == 0)
-            return(env[i] + 5);
-        i++;
-    }
-	printf("cd: HOME not set");
-	return(NULL);
-}
+// char *find_home(char **env)
+// {
+// 	int i;
+// 	int j;
+// 	i = 0;
+// 	j = 0;
+// 	while(env[i])
+//     {
+//         if(ft_strncmp(env[i], "HOME=", 5) == 0)
+//             return(env[i] + 5);
+//         i++;
+//     }
+// 	printf("cd: HOME not set");
+// 	return(NULL);
+// }
 
-int change_path(char *name_folder,char **env)
-{
-	char *new_path;
+// int change_path(char *name_folder,char **env)
+// {
+// 	char *new_path;
 
-	new_path = getcwd(NULL,0);
-	if (name_folder == NULL)
-		new_path = find_home(env);
-	else
-	{
-		new_path = ft_strjoin(new_path,"/");
-		new_path = ft_strjoin(new_path,name_folder);
-	}
-	chdir(new_path);
-	return 0;
-}
+// 	new_path = getcwd(NULL,0);
+// 	if (name_folder == NULL)
+// 		new_path = find_home(env);
+// 	else
+// 	{
+// 		new_path = ft_strjoin(new_path,"/");
+// 		new_path = ft_strjoin(new_path,name_folder);
+// 	}
+// 	chdir(new_path);
+// 	return 0;
+// }

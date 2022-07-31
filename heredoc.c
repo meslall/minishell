@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 17:04:34 by zdasser           #+#    #+#             */
-/*   Updated: 2022/07/25 20:32:41 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:32:03 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,11 @@ void cmd_loop(t_list *l)
 						get_delimiter(l, *s + j, &count);
 					}
 					else
-						delimiter = s[i + 1];//<< f<<a
+						delimiter = s[i + 1];
 					((t_all *)l->content)->delimiter[count] = delimiter;
 					count++;
 				}
-				else
-				{
-					if(get_delimiter(l, s[i], &count))
-						printf("##############\n");
-						// get_delimiter(l, s[i + 1], &count);
-				}
+						get_delimiter(l, s[i + 1], &count);
 			}
 			i++;
 		}
