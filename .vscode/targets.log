@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Sun Jul 31 14:43:50 2022
+# Make data base, printed on Sat Aug  6 22:55:30 2022
 
 # Variables
 
@@ -17,7 +16,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 15)
-SRC = main.c export.c error_handling.c env_var.c minishell_utils.c execution.c cd.c heredoc.c outfiles.c redirections.c exit_value.c builtin/cd.c builtin/pwd.c 
+SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c 
 # makefile (from `Makefile', line 23)
 IFLAGS = -I ~/.brew/opt/readline/include
 # automatic
@@ -27,7 +26,7 @@ IFLAGS = -I ~/.brew/opt/readline/include
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/omeslall/Desktop/kl
+CURDIR := /Users/omeslall/Desktop/minishell
 # makefile
 SHELL = /bin/sh
 # makefile (from `Makefile', line 27)
@@ -43,7 +42,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.PsJzRWRlWb/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.bglAlZ5IPa/Render
 # environment
 PATH = /Users/omeslall/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -53,13 +52,13 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.6eQyqTyT7f/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QNTfSsKwwa/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 HOMEBREW_TEMP = /tmp/omeslall/Homebrew/Temp
 # environment
-PWD = /Users/omeslall/Desktop/kl
+PWD = /Users/omeslall/Desktop/minishell
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -93,7 +92,7 @@ SHLVL = 1
 # makefile (from `Makefile', line 25)
 LIBFT = libft/libft.a
 # makefile (from `Makefile', line 17)
-CC = @gcc -g -lreadline
+CC = @gcc -g -lreadline  -fsanitize=address
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -127,13 +126,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1236
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0xFCB:0:0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -155,9 +156,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3071
+VSCODE_PID = 24864
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/98=2%
+# Load=73/1024=7%, Rehash=0, Collisions=2/99=2%
 
 # Pattern-specific Variable Values
 
@@ -165,9 +166,9 @@ VSCODE_PID = 3071
 
 # Directories
 
-# . (device 16777227, inode 7352606): 22 files, no impossibilities.
+# . (device 16777227, inode 8100230): 11 files, no impossibilities.
 
-# 22 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -201,7 +202,7 @@ t:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-30 15:39:02
+#  Last modified 2022-08-05 23:38:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -209,7 +210,7 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-30 15:50:05
+#  Last modified 2022-08-06 22:30:41
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 32):
@@ -261,6 +262,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jul 31 14:43:50 2022
+# Finished Make data base on Sat Aug  6 22:55:30 2022
 
  

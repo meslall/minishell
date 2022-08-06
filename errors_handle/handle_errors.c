@@ -1,4 +1,16 @@
-#include"minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/04 18:26:37 by omeslall          #+#    #+#             */
+/*   Updated: 2022/08/05 20:05:47 by omeslall         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../src/minishell.h"
 
 int	ft_cmp(char *s, char c)
 {
@@ -109,23 +121,22 @@ int	quotes(char *argv)
 	size_t i;
 
 	i = 0;
-	size_t j = 0;
 	while(argv[i])
 	{	
-		j = i;
-		char c = quotes_exist(argv, &j);
+		char c = quotes_exist(argv, &i);
 		if(c)
 		{
-			j++;
-			while(argv[j] && argv[j] != c)
-				j++;
-			if( j == ft_strlen(argv))
+			i++;
+			while(argv[i] && argv[i] != c)
+				i++;
+			if( i == ft_strlen(argv))
 			{
-				write(1, "Error unclosed quotes\n", 23);
+				write(2, "Error unclosed quotes\n", 23);
 				return(0);
 			}
 		}
-		i = j + 1;
+        if(i < ft_strlen(argv))
+            i++;
 	}
 	return(1);
 }
@@ -201,4 +212,4 @@ int	handle_errors(char *argv)
 	if(!handle_pipe(argv))
 		return(0);
 	return(1);
-}
+} 
