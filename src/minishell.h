@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/06 16:42:19 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/07 21:42:07 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct s_token
     enum
     {
         ARG,
-        REDIRECTION = '>',
+        R_REDIRECTION = '>',
+        L_REDIRECTION = '<',
         PIPE = '|',
-        DOUBLEQOUATE = '"',
-        SINGLEQOUATE = '\'',
+        
     } type;
     
 }        t_token;
@@ -61,6 +61,7 @@ int     ft_strcmp(char *s1, char *s2);
 int     ft_strequ(char *s1, char *s2);
 void    lexer_skip_whitespaces(t_lexer *lexer);
 t_token *arg_token(t_lexer *lexer);
+void	run_qouate(t_lexer *lexer,char *c);
 
 int	handle_errors(char *argv);
 

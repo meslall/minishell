@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Sat Aug  6 22:55:30 2022
+# Make data base, printed on Sun Aug  7 20:34:42 2022
 
 # Variables
 
@@ -42,7 +43,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.bglAlZ5IPa/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.IGawm3Uv9h/Render
 # environment
 PATH = /Users/omeslall/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -52,7 +53,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QNTfSsKwwa/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2OYBBJTo1N/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -156,7 +157,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 24864
+VSCODE_PID = 8824
 # variable set hash-table stats:
 # Load=73/1024=7%, Rehash=0, Collisions=2/99=2%
 
@@ -210,7 +211,7 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-06 22:30:41
+#  Last modified 2022-08-07 19:29:23
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 32):
@@ -262,6 +263,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Aug  6 22:55:30 2022
+# Finished Make data base on Sun Aug  7 20:34:42 2022
 
  
