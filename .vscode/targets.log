@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Aug  7 20:34:42 2022
+# Make data base, printed on Wed Aug 10 00:33:33 2022
 
 # Variables
 
@@ -16,10 +16,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+ 
 # makefile (from `Makefile', line 15)
-SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c 
-# makefile (from `Makefile', line 23)
-IFLAGS = -I ~/.brew/opt/readline/include
+SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c parce/parce.c parce/args.c parce/init_struct.c parce/pipe.c parce/redirections.c 
+# makefile (from `Makefile', line 24)
+IFLAGS = -I ~/Desktop/brew/opt/readline/include
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -30,34 +31,30 @@ IFLAGS = -I ~/.brew/opt/readline/include
 CURDIR := /Users/omeslall/Desktop/minishell
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 27)
+# makefile (from `Makefile', line 29)
 RM = @rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 19)
+# makefile (from `Makefile', line 20)
 CFLAGS = -Wall -Wextra -Werror
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.IGawm3Uv9h/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.OyVrUZHo4i/Render
 # environment
-PATH = /Users/omeslall/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2OYBBJTo1N/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.mFxV9Z0yXn/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-HOMEBREW_TEMP = /tmp/omeslall/Homebrew/Temp
 # environment
 PWD = /Users/omeslall/Desktop/minishell
 # environment
@@ -75,8 +72,6 @@ LOGNAME = omeslall
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-ZSH = /Users/omeslall/.oh-my-zsh
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -87,12 +82,10 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-HOMEBREW_CACHE = /tmp/omeslall/Homebrew/Caches
-# environment
 SHLVL = 1
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 27)
 LIBFT = libft/libft.a
-# makefile (from `Makefile', line 17)
+# makefile (from `Makefile', line 18)
 CC = @gcc -g -lreadline  -fsanitize=address
 # default
 MAKE_VERSION := 3.81
@@ -102,12 +95,10 @@ USER = omeslall
 .DEFAULT_GOAL := all
 # makefile (from `Makefile', line 13)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 21)
-LFLAGS = -L ~/.brew/opt/readline/lib
+# makefile (from `Makefile', line 22)
+LFLAGS = -L ~/Desktop/brew/opt/readline/lib
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
@@ -127,25 +118,19 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+XPC_SERVICE_NAME = com.microsoft.VSCode.2820
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0xFCB:0:0
-# environment
-COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
-PAGER = less
-# environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
@@ -157,9 +142,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 8824
+VSCODE_PID = 17638
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=2/99=2%
+# Load=65/1024=6%, Rehash=0, Collisions=2/91=2%
 
 # Pattern-specific Variable Values
 
@@ -167,9 +152,9 @@ VSCODE_PID = 8824
 
 # Directories
 
-# . (device 16777227, inode 8100230): 11 files, no impossibilities.
+# . (device 16777227, inode 15412): 12 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -190,7 +175,7 @@ t:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 38):
+#  commands to execute (from `Makefile', line 40):
 	@./$(NAME)
 	
 
@@ -203,7 +188,7 @@ t:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-05 23:38:49
+#  Last modified 2022-08-10 00:33:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -211,10 +196,10 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-07 19:29:23
+#  Last modified 2022-08-10 00:13:44
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 32):
+#  commands to execute (from `Makefile', line 34):
 	@cd libft && make && make bonus && cd ..
 	@stty -echoctl
 	$(CC) $(CFLAGS) $(LIBFT) $(SRC) -lreadline $(LFLAGS) $(IFLAGS) -o $(NAME)
@@ -225,7 +210,7 @@ fclean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 43):
+#  commands to execute (from `Makefile', line 45):
 	@cd libft && make fclean && cd ..
 	$(RM) $(NAME)
 	@echo "\033[0;31mminishell DELETED 🗑"
@@ -234,6 +219,7 @@ fclean:
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -246,7 +232,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 40):
+#  commands to execute (from `Makefile', line 42):
 	@cd libft && make clean && cd ..
 	
 
@@ -263,6 +249,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Aug  7 20:34:42 2022
+# Finished Make data base on Wed Aug 10 00:33:33 2022
 
  

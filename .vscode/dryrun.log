@@ -1,9 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/omeslall/Desktop/minishell'
-cd libft && make && make bonus && cd ..
-stty -echoctl
- 
-gcc -g -lreadline  -fsanitize=address -Wall -Wextra -Werror libft/libft.a src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c  -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -o minishell
-echo "\033[0;32m®minishell CREATED 🐲\033[0m"
+make: Nothing to be done for `all'.
 make: Leaving directory `/Users/omeslall/Desktop/minishell'
  

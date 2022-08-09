@@ -6,21 +6,23 @@
 #    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/08/05 23:38:49 by omeslall         ###   ########.fr        #
+#    Updated: 2022/08/10 00:33:22 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c\
+SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c parce/parce.c\
+		parce/args.c parce/init_struct.c parce/pipe.c parce/redirections.c\
 
 CC = @gcc -g -lreadline  -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-LFLAGS = -L ~/.brew/opt/readline/lib
+LFLAGS = -L ~/Desktop/brew/opt/readline/lib
 
-IFLAGS = -I ~/.brew/opt/readline/include
+IFLAGS = -I ~/Desktop/brew/opt/readline/include
+
 
 LIBFT = libft/libft.a
 

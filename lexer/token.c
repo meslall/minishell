@@ -17,7 +17,7 @@ t_token *fill_token(t_lexer *lexer)
     int     type;
     
     value = ft_substr(lexer->line, lexer->j, lexer->i);
-    if (value)
+    if (*value)
     {
         type = get_type(value);
         token = init_token(value, type);
@@ -50,4 +50,10 @@ void	run_qouate(t_lexer *lexer,char *c)
 	{
 		lexer_advance(lexer);
 	}	
+}
+
+void    free_token(t_token *token)
+{
+    free(token->value);
+    free(token);
 }

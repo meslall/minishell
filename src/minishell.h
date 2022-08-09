@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/07 21:42:07 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:08:02 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,36 @@ typedef struct t_lexer
 	unsigned int j;
 }       t_lexer;
 
+typedef struct s_data
+{
+    char **args;
+    int error;
+}       t_data;
+
+
 t_lexer	*init_lexer(char *line);
 void	lexer_advance(t_lexer *lexer);
 t_token	*get_next_token(t_lexer *lexer);
 t_token	*init_token(char *value,int type);
-t_token *fill_token(t_lexer *lexer);
+t_token	*fill_token(t_lexer *lexer);
 int		get_type(char *value);
 int		is_a_special_char(char c);
 void	parse(char *line);
-int     ft_strcmp(char *s1, char *s2);
-int     ft_strequ(char *s1, char *s2);
-void    lexer_skip_whitespaces(t_lexer *lexer);
-t_token *arg_token(t_lexer *lexer);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_strequ(char *s1, char *s2);
+void	lexer_skip_whitespaces(t_lexer *lexer);
+t_token	*arg_token(t_lexer *lexer);
 void	run_qouate(t_lexer *lexer,char *c);
+void    free_token(t_token *token);
+t_list	*init_execution();
+t_data	*init_data();
+void	free_token(t_token *token);
+void    fill_args(t_list *exec,t_token *token);
+void	**ft_2d_realloc(void **arg,int size);
+int		len_2d_array(void **array);
+void	fill_pipe(t_list *exec);
 
+//-----------------------------------------------------
 int	handle_errors(char *argv);
 
 #endif    
