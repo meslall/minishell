@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/11 17:10:00 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 20:04:53 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse(char *line)
 			}
 			printf("-----------------args-------------------------\n\n");
 		}
-			i = 0;
+		i = 0;
 		if(((t_data *)exec->content)->infiles)
 		{
 			printf("-----------------infiles-------------------------\n");
@@ -59,7 +59,31 @@ void	parse(char *line)
 					printf("---((t_data *)exec->content)->infiles[%d]--->%d\n",i,((t_data *)exec->content)->infiles[i]);
 				i++;
 			}
-			printf("-----------------infiles-------------------------\n");
+			printf("-----------------infiles-------------------------\n\n");
+				
+		}
+		i = 0;
+		if(((t_data *)exec->content)->outfiles)
+		{
+			printf("-----------------outfiles-------------------------\n");
+			while(((t_data *)exec->content)->outfiles[i])
+			{
+					printf("---((t_data *)exec->content)->infiles[%d]--->%s\n",i,((t_data *)exec->content)->outfiles[i]);
+				i++;
+			}
+			printf("-----------------outfiles-------------------------\n");
+				
+		}
+		i = 0;
+		if(((t_data *)exec->content)->append)
+		{
+			printf("-----------------append-------------------------\n");
+			while(((t_data *)exec->content)->append[i])
+			{
+					printf("---((t_data *)exec->content)->infiles[%d]--->%s\n",i,((t_data *)exec->content)->append[i]);
+				i++;
+			}
+			printf("-----------------append-------------------------\n");
 				
 		}
 		printf("========================================================================================\n");

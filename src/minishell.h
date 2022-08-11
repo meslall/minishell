@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/11 17:16:53 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:30:39 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_data
 	char	*inf;
 	int 	*infiles;
 	int 	n_infiles;
+	char	**outfiles;
+	char 	**append;
 }       t_data;
 
 
@@ -83,6 +85,8 @@ void	fill_pipe(t_list *exec);
 void	fill_redirections(t_list *exec, t_token **token, t_lexer *lexer);
 void	fill_infile(t_list *exec, t_token *token);
 int		*ft_int_realloc(int *ptr, int size);
+void	fill_outfile(t_list *exec, t_token *token);
+void	fill_append(t_list *exec, t_token *token);
 
 //-----------------------------------------------------
 int	handle_errors(char *argv);

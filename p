@@ -1,0 +1,10 @@
+Makefile
+a
+errors_handle
+lexer
+libft
+minishell
+minishell.dSYM
+p
+parce
+src

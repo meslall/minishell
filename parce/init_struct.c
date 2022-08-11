@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:45:36 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/11 17:16:45 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:27:42 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_data	*init_data()
 	data->inf = NULL;
 	data->infiles = NULL;
 	data->n_infiles = 0;
+	data->outfiles = NULL;
+	data->append = NULL;
 	return (data);
 }
 
