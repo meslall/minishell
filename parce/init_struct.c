@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:45:36 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/09 20:58:13 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:16:45 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,26 @@ t_data	*init_data()
 	data = malloc(sizeof(t_data));
 	data->args = NULL;
 	data->error = 0;
+	data->inf = NULL;
+	data->infiles = NULL;
+	data->n_infiles = 0;
 	return (data);
+}
+
+// function realloc for int array
+int		*ft_int_realloc(int *array, int len)
+{
+	int *new;
+	int i;
+	
+	i = 0;
+	new = malloc(sizeof(int) * (len + 1));
+	while (i < len)
+	{
+		new[i] = array[i];
+		i++;
+	}
+	new[i] = 0;
+	free(array);
+	return (new);
 }

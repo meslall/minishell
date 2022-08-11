@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:27:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/09 21:23:06 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:34:23 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ void    fill_args(t_list *exec,t_token *token)
 {
     char *arg;
 
-    arg = ft_strdup(token->value);
-    ((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len_2d_array((void **)(((t_data *)exec->content)->args)) + 1);
-    ((t_data *)exec->content)->args[len_2d_array((void **)(((t_data *)exec->content)->args))] = arg;
+	if(((t_data *)exec->content)->error != 1)
+	{
+    	arg = ft_strdup(token->value);
+    	((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len_2d_array((void **)(((t_data *)exec->content)->args)) + 1);
+	    ((t_data *)exec->content)->args[len_2d_array((void **)(((t_data *)exec->content)->args))] = arg;
+	}
 }
 
 void **ft_2d_realloc(void **arg,int size)

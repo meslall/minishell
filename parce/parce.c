@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/10 00:32:29 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:10:00 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	parse(char *line)
 	exec = init_execution();
 	while (token)
 	{
-        // printf("[%s]\n",token->value);
-		if(token->type == ARG && ((t_data *)exec->content)->error != 1)
+
+		if(token->type == ARG)
 			fill_args(ft_lstlast(exec), token);
 		else if(token->type == L_REDIRECTION || token->type == R_REDIRECTION)
-			fill_re
+			fill_redirections(ft_lstlast(exec), &token, lexer);
 		else if(token->type == PIPE)
 			fill_pipe(exec);
 		free_token(token);
@@ -37,19 +37,32 @@ void	parse(char *line)
 	i = 0;
 	while (exec)
 	{	
-		i = 0;
-		printf("_________________________________________\n\n");
+		printf("========================================================================================\n\n");
+
 		if(((t_data *)exec->content)->args)
 		{
+			i = 0;
+			printf("-----------------args-------------------------\n");
 			while(((t_data *)exec->content)->args[i])
 			{
-				printf("--------------->%s\n",((t_data *)exec->content)->args[i]);
+					printf("----((t_data *)exec->content)->args[%d]----------->%s\n",i,((t_data *)exec->content)->args[i]);
 				i++;
 			}
+			printf("-----------------args-------------------------\n\n");
 		}
-		else
-			printf("--------------->NULL\n");
-		printf("_________________________________________\n");
+			i = 0;
+		if(((t_data *)exec->content)->infiles)
+		{
+			printf("-----------------infiles-------------------------\n");
+			while(((t_data *)exec->content)->n_infiles > i)
+			{
+					printf("---((t_data *)exec->content)->infiles[%d]--->%d\n",i,((t_data *)exec->content)->infiles[i]);
+				i++;
+			}
+			printf("-----------------infiles-------------------------\n");
+				
+		}
+		printf("========================================================================================\n");
 		exec = exec->next;
 	}
 	

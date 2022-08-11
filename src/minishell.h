@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/09 22:08:02 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:16:53 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ typedef struct t_lexer
 
 typedef struct s_data
 {
-    char **args;
-    int error;
+    char 	**args;
+    int 	error;
+	char	*inf;
+	int 	*infiles;
+	int 	n_infiles;
 }       t_data;
 
 
@@ -77,6 +80,9 @@ void    fill_args(t_list *exec,t_token *token);
 void	**ft_2d_realloc(void **arg,int size);
 int		len_2d_array(void **array);
 void	fill_pipe(t_list *exec);
+void	fill_redirections(t_list *exec, t_token **token, t_lexer *lexer);
+void	fill_infile(t_list *exec, t_token *token);
+int		*ft_int_realloc(int *ptr, int size);
 
 //-----------------------------------------------------
 int	handle_errors(char *argv);
