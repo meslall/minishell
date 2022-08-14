@@ -37,6 +37,8 @@ t_token *arg_token(t_lexer *lexer)
 		{
 			c = lexer->c;
 			run_qouate(lexer,&c);
+			if(lexer->c == '\0')
+				return (NULL);
 		}
         lexer_advance(lexer);
 	}
@@ -49,6 +51,8 @@ void	run_qouate(t_lexer *lexer,char *c)
 	while (lexer->c !=  *c)
 	{
 		lexer_advance(lexer);
+		if (lexer->c == '\0')
+			break ;
 	}	
 }
 

@@ -6,14 +6,15 @@
 #    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/08/10 00:33:22 by omeslall         ###   ########.fr        #
+#    Updated: 2022/08/14 19:18:15 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c parce/parce.c\
-		parce/args.c parce/init_struct.c parce/pipe.c parce/redirections.c\
+		parce/args.c parce/init_struct.c parce/pipe.c parce/redirections.c \
+		errors_handle/handle_errors.c\
 
 CC = @gcc -g -lreadline  -fsanitize=address
 

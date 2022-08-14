@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/11 20:04:53 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/14 21:59:40 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ void	parse(char *line)
 	t_lexer *lexer;
 	t_list	*exec;
 
+	if(!handle_errors(line))
+	{
+		//exit_value;
+		return ;
+	}
+	exec = init_execution();
 	lexer = init_lexer(line);
 	token = get_next_token(lexer);
-	exec = init_execution();
 	while (token)
 	{
 
@@ -68,7 +73,7 @@ void	parse(char *line)
 			printf("-----------------outfiles-------------------------\n");
 			while(((t_data *)exec->content)->outfiles[i])
 			{
-					printf("---((t_data *)exec->content)->infiles[%d]--->%s\n",i,((t_data *)exec->content)->outfiles[i]);
+					printf("---((t_data *)exec->content)->outfiles[%d]--->%s\n",i,((t_data *)exec->content)->outfiles[i]);
 				i++;
 			}
 			printf("-----------------outfiles-------------------------\n");
@@ -80,7 +85,7 @@ void	parse(char *line)
 			printf("-----------------append-------------------------\n");
 			while(((t_data *)exec->content)->append[i])
 			{
-					printf("---((t_data *)exec->content)->infiles[%d]--->%s\n",i,((t_data *)exec->content)->append[i]);
+					printf("---((t_data *)exec->content)->append[%d]--->%s\n",i,((t_data *)exec->content)->append[i]);
 				i++;
 			}
 			printf("-----------------append-------------------------\n");
