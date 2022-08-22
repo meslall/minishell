@@ -3,26 +3,27 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
+#    By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/26 14:10:46 by zdasser           #+#    #+#              #
-#    Updated: 2022/08/14 19:18:15 by omeslall         ###   ########.fr        #
+#    Created: 2022/08/13 15:56:31 by kdoulyaz          #+#    #+#              #
+#    Updated: 2022/08/22 15:46:01 by kdoulyaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = src/minishell.c lexer/lexer.c lexer/token.c lexer/lexer_utils.c parce/parce.c\
-		parce/args.c parce/init_struct.c parce/pipe.c parce/redirections.c \
-		errors_handle/handle_errors.c\
+SRC = src/minishell.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c\
+		src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c src/exec/exec.c \
+		src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/builtins/echo.c\
+		src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c
 
 CC = @gcc -g -lreadline  -fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 
-LFLAGS = -L ~/Desktop/brew/opt/readline/lib
+LFLAGS = -L ~/.brew/opt/readline/lib
 
-IFLAGS = -I ~/Desktop/brew/opt/readline/include
+IFLAGS = -I ~/.brew/opt/readline/include
 
 
 LIBFT = libft/libft.a
@@ -37,8 +38,6 @@ $(NAME):
 			$(CC) $(CFLAGS) $(LIBFT) $(SRC) -lreadline $(LFLAGS) $(IFLAGS) -o $(NAME)
 			@echo "\033[0;32m®minishell CREATED 🐲\033[0m"
 
-t:
-			@./$(NAME)
 clean:
 			@cd libft && make clean && cd ..
 
@@ -46,5 +45,8 @@ fclean:
 			@cd libft && make fclean && cd ..
 			$(RM) $(NAME)
 			@echo "\033[0;31mminishell DELETED 🗑"
+
+t:
+			@./$(NAME)
 
 re:			fclean all 

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:50:37 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/09 21:26:44 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:37:19 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include"../include/minishell.h"
+
+int	g_exit_status;
 
 int main(int ac,char **av,char **envp)
 {
@@ -18,19 +20,19 @@ int main(int ac,char **av,char **envp)
 
 	if (!av || !envp)
 		return(0);
+	g_exit_status = 0;
 	if (ac == 1)
 	{
-		while(1)
+		while(1337)
 		{
 			line = readline("minishell:");
-			if (!line)
-				break;
+			// if (!line)
+			// 	break;
 			if (line && *line)
 				add_history (line);
 			if(*line)
-			{
-				parse(line);
-			}
+				parse(line, envp);
 		}
 	}
-} 
+	return(g_exit_status);
+}
