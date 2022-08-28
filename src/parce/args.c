@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:27:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/21 17:58:03 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:33:44 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,20 @@ void    fill_args(t_list *exec,t_token *token)
 	len = len_2d_array((void **)(((t_data *)exec->content)->args));
 	if(((t_data *)exec->content)->error != 1)
 	{
-    	arg = ft_strdup(token->value);
-    	((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len + 1);
-	    ((t_data *)exec->content)->args[len] = arg;
+		arg = ft_strdup("");
+		if(check_qaout(token->value))
+		{
+			if(check_qaout(token->value) == 1)
+				single_quote(token,&arg,0);
+			else if(check_qaout(token->value) == 2)
+				double_quote(exec,token,&arg,0);		
+		}
+		else if(check_if_expand(token->value))
+			expand(exec,token->value,&arg);
+		else
+    		arg = ft_strdup(token->value);
+		((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len + 1);
+		((t_data *)exec->content)->args[len] = arg;
 	}
 }
 
@@ -49,12 +60,12 @@ void **ft_2d_realloc(void **arg,int size)
 	{
 		while (arg[j])
     	{
-    	    new[j] = arg[j];
+    	    new[j] = ft_strdup(arg[j]);
     	    j++;
     	}
 	}
     new[j] = NULL;
 	new[j + 1] = NULL;
-	free(arg);
+	free(arg);//free 2d array
     return (new);
 }

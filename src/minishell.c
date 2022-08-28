@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:50:37 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/22 11:37:19 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:54:47 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int main(int ac,char **av,char **envp)
 		while(1337)
 		{
 			line = readline("minishell:");
-			// if (!line)
-			// 	break;
+			if (!line)
+				break;
 			if (line && *line)
 				add_history (line);
 			if(*line)

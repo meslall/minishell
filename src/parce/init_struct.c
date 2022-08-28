@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:45:36 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/22 14:34:31 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:27:46 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ t_data	*init_data(char **envp)
 	data->n_infiles = 0;
 	data->outfiles = NULL;
 	data->append = NULL;
+	data->envp = malloc(sizeof(char *) * (len_2d_array((void**)envp) + 1));
 	data->envp = create_envp(envp);
 	return (data);
 }
 
-// function realloc for int array
 int		*ft_int_realloc(int *array, int len)
 {
 	int *new;

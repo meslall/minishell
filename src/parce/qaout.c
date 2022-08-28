@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   qaout.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/24 12:59:02 by omeslall          #+#    #+#             */
+/*   Updated: 2022/08/28 22:34:07 by omeslall         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include"../../include/minishell.h"
+
+int	position_quote_s(char *s, int f)
+{
+	static int i;
+
+	while (s[i])
+	{
+		if (s[i] == '\'')
+			return (i++);
+		i++;
+	}
+	if (f == 1)
+		i = 0;
+	return (i);
+}
+
+void	single_quote(t_token *token,char **arg,int i)
+{
+	char	*tmp;
+	int		j;
+	
+	j = 0;
+	j = position_quote_s(token->value,0);
+	if((int)ft_strlen(token->value) < i)
+		{
+			position_quote_s(token->value,1);
+			return;
+		}
+	tmp = ft_substr(token->value,i,j);
+	*arg = ft_strjoin(*arg,tmp);
+	free(tmp);
+	single_quote(token,arg,j + 1);
+}
+
+int	position_quote_d(char *s, int f)
+{
+	static int i;
+
+	while (s[i])
+	{
+		if (s[i] == '"')
+			return (i++);
+		i++;
+	}
+	if (f == 1)
+		i = 0;
+	return (i);
+}
+
+void	double_quote(t_list *exec,t_token *token,char **arg,int i)
+{
+	char	*tmp;
+	int		j;
+	int   	q;
+	
+	j = 0;
+	q = 0; 
+	j = position_quote_d(token->value,0);
+	if((int)ft_strlen(token->value) < i)
+		{
+			position_quote_d(token->value,1);
+			return;
+		}
+	tmp = ft_substr(token->value,i,j);
+	if(check_qaout(tmp) == 1)
+	{
+		tmp[ft_strlen(tmp) - 1] = '\0';
+		q = 1; 
+	}
+	if(check_if_expand(tmp))
+		expand(exec,tmp,&tmp);//echo "sdfgdf"'$HOME'"gdfg"
+	if(q == 1)
+		tmp = ft_strjoin(tmp,"'");
+	*arg = ft_strjoin(*arg,tmp);
+	free(tmp);
+	double_quote(exec,token,arg,j + 1);
+}

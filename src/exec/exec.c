@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:49:56 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/22 10:10:23 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:51:03 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	child_p(t_list *exec, int *p, int copy_fd, char **eenv)
 		ft_dup(((t_data *)exec->content)->infiles[((t_data *)exec->content)->n_infiles - 1], 0);
 	if (((t_data *)exec->content)->args && execve(find_path(((t_data *)exec->content)->args[0],\
 		eenv),((t_data *)exec->content)->args, eenv) == -1)
-		write(2, "sir t9ouwed\n", 12);
+		write(2, "hadi makhedamach\n", 18);
 }
 void	start_exec(t_list *exec, char **eenv)
 {

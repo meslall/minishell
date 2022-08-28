@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 06:35:04 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/20 16:53:29 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:12:35 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	cmd_err(char *cmd)
 	write(STDERR_FILENO, ": command not found\n", 20);
 	exit(1);
 }
-
+//ls | >a | >b | >c
 void	path_err(void)
 {
 	write(2, "path dosn't exist\n", 18);
