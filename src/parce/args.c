@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:27:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/25 22:33:44 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/29 23:05:45 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,7 @@ void    fill_args(t_list *exec,t_token *token)
 	{
 		arg = ft_strdup("");
 		if(check_qaout(token->value))
-		{
-			if(check_qaout(token->value) == 1)
-				single_quote(token,&arg,0);
-			else if(check_qaout(token->value) == 2)
-				double_quote(exec,token,&arg,0);		
-		}
+			qaout(exec,token->value, &arg,0);
 		else if(check_if_expand(token->value))
 			expand(exec,token->value,&arg);
 		else

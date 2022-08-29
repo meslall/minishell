@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 09:59:48 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/25 23:34:07 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/29 22:47:23 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	next_expand(char *s)
 		i++;
 	while (s[i])
 	{
-		if (s[i] == '$')
+		if (s[i] == '$' || s[i] == '\'')
+		
 			return (i);
 		i++;
 	}
@@ -83,6 +84,7 @@ void	expand(t_list *exec,char *value,char **arg)
 		i++;
 	}
 	*arg = ft_strdup(tmp);
+	free(tmp);
 }
 
 char	*fill_expand(t_list *exec,char *value)

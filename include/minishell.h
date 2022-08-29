@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/25 22:34:00 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/29 23:01:01 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_data
 	int 	n_infiles;
 	char	**outfiles;
 	char 	**append;
-    char    **envp;
+    char    **envp;     
 }       t_data;
 
 t_data	g_data;
@@ -80,10 +80,12 @@ void    free_token(t_token *token);
 t_list	*init_execution(char **envp);
 t_data	*init_data(char **envp);
 int		check_qaout(char *s);
-void	single_quote(t_token *token,char **arg,int i);
+void	single_quote(char *value,char **arg,int i);
 int		position_quote_s(char *s,int f);
 int		position_quote_d(char *s, int f);
-void	double_quote(t_list *exec,t_token *token,char **arg,int i);
+void	double_quote(t_list *exec,char *value,char **arg,int i);
+void	qaout(t_list *exec, char *value, char **arg, int i);
+int		position_quote(char *s, int f);
 void    fill_args(t_list *exec,t_token *token);
 void	**ft_2d_realloc(void **arg,int size);
 int		len_2d_array(void **array);

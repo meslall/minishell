@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:59:02 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/28 22:34:07 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/29 23:46:59 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,25 @@ int	position_quote_s(char *s, int f)
 	return (i);
 }
 
-void	single_quote(t_token *token,char **arg,int i)
+void	single_quote(char *value,char **arg,int i)
 {
 	char	*tmp;
 	int		j;
 	
 	j = 0;
-	j = position_quote_s(token->value,0);
-	if((int)ft_strlen(token->value) < i)
+	j = position_quote_s(value,0);
+	if((int)ft_strlen(value) < i)
 		{
-			position_quote_s(token->value,1);
+			position_quote_s(value,1);
 			return;
 		}
-	tmp = ft_substr(token->value,i,j);
+	tmp = ft_substr(value,i,j);
 	*arg = ft_strjoin(*arg,tmp);
 	free(tmp);
-	single_quote(token,arg,j + 1);
+	single_quote(value,arg,j + 1);
 }
 
-int	position_quote_d(char *s, int f)
+int	position_quote_d(char *s,int f)
 {
 	static int i;
 
@@ -60,7 +60,7 @@ int	position_quote_d(char *s, int f)
 	return (i);
 }
 
-void	double_quote(t_list *exec,t_token *token,char **arg,int i)
+void	double_quote(t_list *exec,char *value,char **arg,int i)
 {
 	char	*tmp;
 	int		j;
@@ -68,23 +68,88 @@ void	double_quote(t_list *exec,t_token *token,char **arg,int i)
 	
 	j = 0;
 	q = 0; 
-	j = position_quote_d(token->value,0);
-	if((int)ft_strlen(token->value) < i)
+	j = position_quote_d(value,0);
+	if((int)ft_strlen(value) < i)
 		{
-			position_quote_d(token->value,1);
+			position_quote_d(value,1);
 			return;
 		}
-	tmp = ft_substr(token->value,i,j);
-	if(check_qaout(tmp) == 1)
-	{
-		tmp[ft_strlen(tmp) - 1] = '\0';
-		q = 1; 
-	}
+	tmp = ft_substr(value,i,j);
 	if(check_if_expand(tmp))
-		expand(exec,tmp,&tmp);//echo "sdfgdf"'$HOME'"gdfg"
-	if(q == 1)
-		tmp = ft_strjoin(tmp,"'");
+	{
+		if(check_qaout(tmp) == 1)
+		{
+			expand(exec,tmp,&tmp);
+		}
+		else
+			expand(exec,tmp,&tmp);
+	}
 	*arg = ft_strjoin(*arg,tmp);
 	free(tmp);
-	double_quote(exec,token,arg,j + 1);
+	double_quote(exec,value,arg,j + 1);
+}
+
+void	qaout(t_list *exec, char *value, char **arg, int i)
+{
+	int		j;
+	char	*tmp;
+	j = 0;
+	if((int)ft_strlen(value) <= i)
+	{
+		position_quote(value,1);
+		return;
+	}
+	j = position_quote(value,0);//j =9
+	tmp	= ft_substr(value,i,j);
+	if(check_qaout(tmp) == 1)
+		single_quote(tmp,arg,0);
+	else if(check_qaout(tmp) == 2)
+		double_quote(exec,tmp,arg,0);
+	else if(check_if_expand(tmp))
+	{
+		expand(exec,tmp,&tmp);
+		*arg = ft_strjoin(*arg,tmp);
+	}
+	else
+		*arg = ft_strjoin(*arg,tmp);
+	free(tmp);
+	qaout(exec,value,arg,j);
+}
+
+int	position_quote(char *s, int f)
+{
+	static int i;
+	static int q;
+	static char tmp;
+
+
+	while (s[i])
+	{
+		if (s[i] == '"' && q == 0 )
+		{
+			tmp = '"';
+			q++;
+			return (i++);
+		}
+		else if (s[i] == '\'' && q == 0)
+		{
+			tmp = '\'';
+			q++;
+			return (i++);
+		}
+		else if (s[i] == tmp && q == 1)
+		{
+			tmp = '\0';
+			q = 0;
+			return (i++);
+		}
+		i++;
+	}
+	if (f == 1)
+	{
+		i = 0;
+		q = 0;
+		tmp = '\0';
+	}
+	return (i);
 }
