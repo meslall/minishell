@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:27:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/29 23:05:45 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:01:51 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,15 @@ void    fill_args(t_list *exec,t_token *token)
 		if(check_qaout(token->value))
 			qaout(exec,token->value, &arg,0);
 		else if(check_if_expand(token->value))
+		{
 			expand(exec,token->value,&arg);
+			expand_split(exec,arg);
+			return;
+		}
 		else
     		arg = ft_strdup(token->value);
-		((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len + 1);
-		((t_data *)exec->content)->args[len] = arg;
+		((t_data *)exec->content)->args = (char **)ft_2d_realloc((void **)(((t_data *)exec->content)->args),len_2d_array((void **)(((t_data *)exec->content)->args)) + 1);
+		((t_data *)exec->content)->args[len_2d_array((void **)(((t_data *)exec->content)->args))] = arg;	
 	}
 }
 

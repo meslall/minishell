@@ -6,7 +6,7 @@
 #    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 15:56:31 by kdoulyaz          #+#    #+#              #
-#    Updated: 2022/08/25 17:08:28 by omeslall         ###   ########.fr        #
+#    Updated: 2022/08/30 18:39:27 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 SRC = src/minishell.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c\
 		src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c \
-		src/parce/qaout.c src/exec/exec.c src/parce/expand.c\
+		src/parce/qaout.c src/exec/exec.c src/parce/expand.c src/parce/expand_utils.c\
 		src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/builtins/echo.c\
 		src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c \
 		

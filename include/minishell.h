@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/29 23:01:01 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/08/31 13:47:59 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_data
 	int 	n_infiles;
 	char	**outfiles;
 	char 	**append;
-    char    **envp;     
+    char    **envp;
 }       t_data;
 
 t_data	g_data;
@@ -99,6 +99,7 @@ int		handle_errors(char *argv);
 int 	check_if_expand(char *s);
 void	expand(t_list *exec,char *value,char **arg);
 char	*fill_expand(t_list *exec,char *value);
+void	expand_split(t_list *exec,char *arg);
 //-----------------------------------------------------
 int		bulitin(t_list *exec);
 int		pwd_cmd(char **envp);
