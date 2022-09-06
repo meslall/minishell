@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 06:35:04 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/24 21:12:35 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/06 04:03:15 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	cmd_err(char *cmd)
 	write(STDERR_FILENO, ": command not found\n", 20);
 	exit(1);
 }
-//ls | >a | >b | >c
+
 void	path_err(void)
 {
 	write(2, "path dosn't exist\n", 18);
@@ -55,6 +55,14 @@ char	*find_path(char *cmd, char **env)
 	return (NULL);
 }
 
+void	error_msg(char *str, int err)
+{
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(strerror(err), 2);
+}
+
 void	open_out(t_list *exec, int *fdout)
 {
 	int	i;
@@ -76,5 +84,12 @@ void	open_out(t_list *exec, int *fdout)
 				dup2(*fdout, 1);
 				close(*fdout);
 			}
+			if (*fdout == -1)
+			{
+				error_msg(((t_data *)exec->content)->outfiles[--i], errno);
+				exit(1);
+			}
 		}
+		if (((t_data *)exec->content)->error == 1)
+			exit(1);
 }

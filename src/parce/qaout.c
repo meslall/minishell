@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qaout.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:59:02 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/31 13:52:11 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/06 02:07:32 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	double_quote(t_list *exec,char *value,char **arg,int i)
 	tmp = ft_substr(value,i,j);
 	if(check_if_expand(tmp))
 	{
-		expand(exec,tmp,&tmp);
+		expand(tmp,&tmp);
 		// if(check_qaout(tmp) == 1)
 		// {
 		// }
@@ -108,8 +108,8 @@ void	qaout(t_list *exec, char *value, char **arg, int i)
 	else if(check_if_expand(tmp))
 	{
 		tmp = ft_strjoin(*arg,tmp);
-		expand(exec,tmp,arg);
-		expand_split(exec,*arg);
+		expand(tmp,arg);
+		expand_split(exec,*arg,0);
 		free(*arg);
 		*arg = ft_strdup("");
 		// free(*arg);

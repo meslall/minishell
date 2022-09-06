@@ -6,27 +6,35 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 04:56:15 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/21 09:47:43 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:55:27 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	pwd_cmd(char **envp)
+int	pwd_cmd(void)
 {
-	char	*path;
+	int		i;
 
-	(void)envp;
-	path = getcwd(NULL, 0);
-	ft_putstr_fd(path, 1);
-	ft_putstr_fd("\n", 1);
-	if (!path)
+	i = -1;
+	char *s;
+	while (g_glob.envp[++i])
 	{
-		path = getenv("PWD");
-		ft_putstr_fd(path, 1);
-		ft_putstr_fd("\n", 1);
+		if (!ft_strncmp(g_glob.envp[i], "PWD=", 4))
+		{
+			if (g_glob.envp[i][4] == '\0')
+				write(2, "Err path\n", 9);
+			else
+				printf("{%s}\n", g_glob.envp[i] + 4);
+			break ;
+		}
+		else
+		{
+			s = getcwd(NULL, 0);
+			printf("%s\n", s);
+			free(s);
+			break;
+		}
 	}
-	else
-		free(path);
 	return (0);
 }

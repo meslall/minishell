@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parce.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/30 22:30:30 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:38:04 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../../include/minishell.h"
+
+int	g_exit_status;
 
 void	printer(t_list *exec)
 {
@@ -98,10 +100,6 @@ int	parse(char *line, char **envp)
 		token = get_next_token(lexer);
 	}
 	// printer(exec);
-	if (bulitin(exec))
-		g_exit_status = execute_bulitings(exec, envp);
-	else
-		start_exec(exec, envp);
-	return (g_exit_status);
-	return(0);
+	start_exec(exec, envp);
+	return (g_exit_status); 
 }

@@ -1,9 +1,0 @@
-Makefile
-a
-b
-c
-include
-libft
-minishell
-minishell.dSYM
-src

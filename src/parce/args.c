@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:27:54 by omeslall          #+#    #+#             */
-/*   Updated: 2022/08/31 14:01:51 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/06 02:08:02 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void    fill_args(t_list *exec,t_token *token)
 			qaout(exec,token->value, &arg,0);
 		else if(check_if_expand(token->value))
 		{
-			expand(exec,token->value,&arg);
-			expand_split(exec,arg);
+			expand(token->value,&arg);
+			expand_split(exec,arg,0);
 			return;
 		}
 		else

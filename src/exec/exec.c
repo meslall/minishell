@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:49:56 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/25 22:51:03 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/06 02:22:07 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,16 @@ void	start_exec(t_list *exec, char **eenv)
 	int		tmpin;
 	int		tmpout;
 	int		pid;
+	int		g;
 	int		copy_fd;
 
+	g = 0;
+	if (bulitin(exec) && g == 0)
+	{
+		g_glob.g_exit_status = execute_bulitings(exec);
+		g_glob.built = 1;
+		return ;
+	}
 	lst = exec;
 	copy_fd = -1;
 	tmpin = dup(0);
@@ -53,6 +61,8 @@ void	start_exec(t_list *exec, char **eenv)
 	while(exec)
 	{
 		pipe(p);
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		pid = fork();
 		if (pid == -1)
 		{
@@ -61,6 +71,8 @@ void	start_exec(t_list *exec, char **eenv)
 		}
 		if (pid == 0)
 		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if(((t_data *)exec->content)->inf)
 			{
 				write(2, "minishell: ", 11);
@@ -85,4 +97,5 @@ void	start_exec(t_list *exec, char **eenv)
 		wait(NULL);
 		lst = lst->next;
 	}
+	init_signal();
 }
