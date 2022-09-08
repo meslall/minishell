@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parce.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/06 16:38:04 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:46:57 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../../include/minishell.h"
-
-int	g_exit_status;
 
 void	printer(t_list *exec)
 {
@@ -64,10 +62,22 @@ void	printer(t_list *exec)
 			printf("-----------------append-------------------------\n");
 			while(((t_data *)exec->content)->append[i])
 			{
-					printf("---((t_data *)exec->content)->infiles[%d]--->%s\n",i,((t_data *)exec->content)->append[i]);
+					printf("---((t_data *)exec->content)->append[%d]--->%s\n",i,((t_data *)exec->content)->append[i]);
 				i++;
 			}
 			printf("-----------------append-------------------------\n");
+				
+		}
+		i = 0;
+		if(((t_data *)exec->content)->hd)
+		{
+			printf("-----------------hd-------------------------\n");
+			while(((t_data *)exec->content)->hd[i])
+			{
+					printf("---((t_data *)exec->content)->hd[%d]--->%s\n",i,((t_data *)exec->content)->hd[i]);
+				i++;
+			}
+			printf("-----------------hd-------------------------\n");
 				
 		}
 		printf("========================================================================================\n");
@@ -99,7 +109,14 @@ int	parse(char *line, char **envp)
 		free_token(token);
 		token = get_next_token(lexer);
 	}
-	// printer(exec);
-	start_exec(exec, envp);
-	return (g_exit_status); 
+	printer(exec);//$"HOME"
+	free_exec(exec);
+	free(lexer);
+	system("leaks minishell");//adfasdf$HOME"'$HOME'"adsfasdf>a
+	// if (bulitin(exec))
+	// 	g_exit_status = execute_bulitings(exec, envp);
+	// else
+	// 	start_exec(exec, envp);
+	// return (g_exit_status);
+	return(0);
 }

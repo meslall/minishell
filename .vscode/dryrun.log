@@ -1,8 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Volumes/OUSSAMA/minishell'
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/omeslall/Desktop/mini'
 cd libft && make && make bonus && cd ..
 stty -echoctl
-gcc -g -lreadline  -fsanitize=address -Wall -Wextra -Werror libft/libft.a src/minishell.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c src/parce/qaout.c src/exec/exec.c src/parce/expand.c src/parce/expand_utils.c src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/builtins/echo.c src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c  -lreadline -L ~/Desktop/brew/opt/readline/lib -I ~/Desktop/brew/opt/readline/include -o minishell
+gcc -g -lreadline  -fsanitize=address -Wall -Wextra -Werror libft/libft.a src/minishell.c src/signals.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c src/parce/expand.c src/parce/expand_utils.c src/parce/qaout.c src/parce/redirections_utils.c src/parce/free.c src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c src/exec/exec.c src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/builtins/echo.c src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c src/builtins/unset.c src/builtins/export.c src/parce/utils.c src/builtins/exp_utils1.c src/builtins/exp_utils2.c src/builtins/unset_utils.c  -lreadline -L ~/Desktop/brew/opt/readline/lib -I ~/Desktop/brew/opt/readline/include -o minishell
 echo "\033[0;32m®minishell CREATED 🐲\033[0m"
-make: Leaving directory `/Volumes/OUSSAMA/minishell'
+make: Leaving directory `/Users/omeslall/Desktop/mini'
  
