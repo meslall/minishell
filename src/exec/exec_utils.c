@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 06:35:04 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/09/06 04:03:15 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:42:36 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	cmd_err(char *cmd)
 	write(STDERR_FILENO, "minishell: ", 11);
 	write(STDERR_FILENO, cmd, ft_strlen(cmd));
 	write(STDERR_FILENO, ": command not found\n", 20);
-	exit(1);
 }
 
 void	path_err(void)
@@ -36,7 +35,7 @@ char	*find_path(char *cmd, char **env)
 	i = 0;
 	while (env[i] && ft_strnstr(env[i], "PATH=", 5) == 0)
 		i++;
-	if (!env)
+	if (env[i] == NULL)
 		path_err();
 	paths = ft_split(env[i] + 5, ':');
 	i = 0;
@@ -46,13 +45,12 @@ char	*find_path(char *cmd, char **env)
 			return (cmd);
 		part_path = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(part_path, cmd);
-		free(part_path);
 		if (access(path, X_OK) == 0)
 			return (path);
 		i++;
 	}
 	cmd_err(cmd);
-	return (NULL);
+	exit(1);
 }
 
 void	error_msg(char *str, int err)

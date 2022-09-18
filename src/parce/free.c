@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 03:39:53 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/06 19:00:28 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:54:15 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,6 @@ void free_exec(t_list* exec)
 				i++;
 			}
 			free(((t_data *)exec->content)->hd);
-		}
-		i = 0;
-		if(((t_data *)exec->content)->envp)
-		{
-			while(((t_data *)exec->content)->envp[i])
-			{
-				free(((t_data *)exec->content)->envp[i]);
-				i++;
-			}
-			free(((t_data *)exec->content)->envp);
 		}
 		if(((t_data *)exec->content)->inf)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qaout.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:59:02 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/08 19:46:09 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/16 22:44:58 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	qaout(t_list *exec, char *value, char **arg, int i)
 		// printf("********************************************\n");
 		len =  len_2d_array((void **)(((t_data *)exec->content)->args));
 		free(*arg);
-		printf("len = %d\n",len);
 		if(len > 0)
 		{
 			*arg = ft_strdup(((t_data *)exec->content)->args[len - 1]);

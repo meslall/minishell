@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 00:33:34 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/07 20:32:34 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:25:45 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ void	fill_redirections(t_list *exec, t_token **token, t_lexer *lexer)
 		if((*token)->type == ARG && ((t_data *)exec->content)->error != 1)
 			fill_infile(exec, *token);
 		else if((*token)->type == L_REDIRECTION)
-		{			
+		{
 			free_token(*token);
 			*token = get_next_token(lexer);
 			fill_heredoc(exec,token);
 		}
-		
 	}
 	else if ((*token)->type == R_REDIRECTION && ((t_data *)exec->content)->error != 1)
 	{
@@ -54,7 +53,6 @@ void	fill_redirections(t_list *exec, t_token **token, t_lexer *lexer)
 		}
 	}
 }
-
 
 void	parse_arg_redi(t_token *token,t_list *exec)
 {

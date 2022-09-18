@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 20:45:36 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/06 19:08:46 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:52:57 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,27 @@ t_data	*init_data(char **envp)
 	t_data *data;
 	int		i;
 
-	(void) envp;
 	i = 0;
 	data = malloc(sizeof(t_data));
 	data->args = NULL;
 	data->error = 0;
-	data->if_hd = 0;
 	data->inf = NULL;
 	data->infiles = NULL;
 	data->n_infiles = 0;
 	data->outfiles = NULL;
 	data->append = NULL;
 	data->hd = NULL;
-	data->envp = create_envp(envp);
+	data->if_hd = 0;
+	if (g_glob.g_env == 0)
+	{
+		g_glob.envp = create_envp(envp);
+		g_glob.g_env = 1;
+	}
+	if (g_glob.g_exp == 0)
+	{
+		g_glob.exp = creat_export(envp);
+		g_glob.g_exp = 1;
+	}
 	return (data);
 }
 

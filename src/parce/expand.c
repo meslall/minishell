@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 09:59:48 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/07 03:35:33 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:08:57 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,24 @@ void	expand(t_list *exec,char *value,char **arg)
 char	*fill_expand(t_list *exec,char *value)
 {
 	int i;
-	char *tmp;
+	int	len;
+	// char *tmp;
 	
 	
 	i = -1;
+
+	(void)exec;
 	value = ft_strjoin(value,"=");
-	tmp =  value;
-	while (((t_data *)exec->content)->envp[++i])
+	while (g_glob.envp[++i])
 	{
-		if(ft_strncmp(((t_data *)exec->content)->envp[i],value,ft_strlen(value)) == 0)
+		if(ft_strncmp(g_glob.envp[i],value,ft_strlen(value)) == 0)
 		{
-			value = ft_strdup(((t_data *)exec->content)->envp[i] + ft_strlen(value));
-			free(tmp);
+			len = ft_strlen(value);
+			free(value);
+			value = ft_strdup(g_glob.envp[i] + len);
 			return(value);
 		}
 	}
-	free(tmp);
+	free(value);
 	return (NULL);	
 }
