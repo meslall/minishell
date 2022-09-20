@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:53:37 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/30 19:20:26 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:47:27 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**creat_export(char **env)
 	char	*tmp;
 	char	*vtmp;
 	char	*value;
-    char    **export;
+	char	**export;
 
 	i = -1;
 	export = ft_calloc(1, sizeof(char *));
@@ -91,5 +91,5 @@ char	**creat_export(char **env)
 		export = add_env(export, tmp);
 		free(tmp);
 	}
-    return (export);
+	return (export);
 }

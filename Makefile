@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+         #
+#    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 15:56:31 by kdoulyaz          #+#    #+#              #
-#    Updated: 2022/09/16 23:42:12 by kdoulyaz         ###   ########.fr        #
+#    Updated: 2022/09/19 23:40:57 by omeslall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ CC = @gcc -g -lreadline #-fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 # for oussama
-# LFLAGS = -L ~/Desktop/brew/opt/readline/lib
+LFLAGS = -L ~/Desktop/brew/opt/readline/lib
 
-# IFLAGS = -I ~/Desktop/brew/opt/readline/include
+IFLAGS = -I ~/Desktop/brew/opt/readline/include
 # for khalid 
-LFLAGS = -L ~/.brew/opt/readline/lib
+# LFLAGS = -L ~/.brew/opt/readline/lib
 
-IFLAGS = -I ~/.brew/opt/readline/include
+# IFLAGS = -I ~/.brew/opt/readline/include
 
 LIBFT = libft/libft.a
 

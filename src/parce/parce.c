@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parce.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/18 17:00:34 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:45:37 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,10 +248,26 @@ void	here_doc(t_list	*exec)
 	i = -1;
 	while (((t_data *)exec->content)->hd && ((t_data *)exec->content)->hd[++i])
 	{
+		expand = 1;
 		g_glob.signal_heredoc = 1;
 		g_glob.tmpin = dup(0);
-		expand = 1;//hiya hadi
-		value = parse_limiter(((t_data *)exec->content)->hd[i], &expand);
+		value = ft_strdup("");
+		if (check_qaout(((t_data *)exec->content)->hd[i]))
+		{
+			((t_data *)(exec->content))->if_hd = 1;
+			if (check_qaout(((t_data *)exec->content)->hd[i]) == 1)
+				single_quote(((t_data *)exec->content)->hd[i], &value, 0);
+			else if (check_qaout(((t_data *)exec->content)->hd[i]) == 2)
+				double_quote(exec, ((t_data *)exec->content)->hd[i], &value, 0);
+			expand = 0;
+			((t_data *)(exec->content))->if_hd = 0;
+		}
+		else
+		{
+			free(value);
+			value = ft_strdup(((t_data *)exec->content)->hd[i]);
+		}
+		printf("value = %s\n", value);
 		if (g_glob.breaker == 0)
 			open_heredoc(value, expand);
 		free (value);
@@ -283,10 +299,11 @@ int	parse(char *line, char **envp)
 		free_token(token);
 		token = get_next_token(lexer);
 	}
-	// printer(exec);//$"HOME"
+
 	here_doc(exec);
 	free(lexer);
 	start_exec(exec);
-	free_exec(exec);// return (g_exit_status);
+	free_exec(exec);
 	return (0);
+
 }
