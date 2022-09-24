@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 18:26:37 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/07 20:47:07 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/22 01:44:18 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	handle_quotes(char *s)
 	int i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if(s[i] == '"' || s[i] == 39)
 		{
@@ -57,17 +57,6 @@ char	quotes_exist(char *argv, size_t *i)
 	}
 	return(0);
 }
-
-// int ft_sperror(char *av, int *i)
-// {
-// 	while (av[*i])
-// 	{
-// 		if(av[*i] != ' ' && av[*i] != '\t' && av[*i] != '>' && av[*i] != '<')
-// 			return(1);
-// 		*i += 1;
-// 	}
-// 	return(0);
-// }
 
 int ft_skip_whitespace(char *av, int *i)
 {
@@ -96,8 +85,7 @@ int red_error(int *i, int *j, char *argv)
 	}
 	// if(!ft_isalnum(argv[*i]))
 	// 	error = 1;
-	return(error);
-	
+	return (error);
 }
 
 int handle_redirections(char *argv, size_t *j)
@@ -125,27 +113,26 @@ int handle_redirections(char *argv, size_t *j)
 	return(1);
 }
 
-int	quotes(char *argv)
+int	quotes(char *argv, size_t *i)
 {
-	size_t i;
+	char	c;
 
-	i = 0;
-	while(argv[i])
-	{	
-		char c = quotes_exist(argv, &i);
+	while (argv[*i])
+	{
+		c = quotes_exist(argv, i);
 		if(c)
 		{
-			i++;
-			while(argv[i] && argv[i] != c)
-				i++;
-			if( i == ft_strlen(argv))
+			*i += 1;
+			while(argv[*i] && argv[*i] != c)
+				*i += 1;
+			if( *i == ft_strlen(argv))
 			{
 				write(2, "Error unclosed quotes\n", 23);
 				return(0);
 			}
 		}
-        if(i < ft_strlen(argv))
-            i++;
+		if (*i < ft_strlen(argv))
+			*i += 1;
 	}
 	return(1);
 }
@@ -195,30 +182,30 @@ int	handle_pipe(char *argv)
 
 int	handle_errors(char *argv)
 {
-	size_t i;
-	int j;
+	size_t	i;
+	int		j;
 
 	i = 0;
 	j = 0;
-	if(!quotes(argv))
-		return(0);
-	while(argv[i])
+	if (!quotes(argv, &i))
+		return (0);
+	while (argv[i])
 	{
-		if(argv[i] == '"' || argv[i] == 39)
+		if (argv[i] == '"' || argv[i] == 39)
 		{
 			j = i + 1;
-			while(argv[j] != argv[i])
+			while (argv[j] != argv[i])
 				j++;
 			i = j;
 		}
 		if (!handle_redirections(argv, &i))
 		{
 			printf("syntax error near unexpected token `newline'\n");
-			return(0);
+			return (0);
 		}
 		i++;
 	}
-	if(!handle_pipe(argv))
-		return(0);
-	return(1);
-} 
+	if (!handle_pipe(argv))
+		return (0);
+	return (1);
+}

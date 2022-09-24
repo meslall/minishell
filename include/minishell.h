@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/18 04:57:01 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:14:30 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_data
 	char	**outfiles;
 	char	**append;
 	char	**hd;
-	char	**envp;
 }				t_data;
 
 t_lexer	*init_lexer(char *line);
@@ -124,7 +123,9 @@ int		check_if_expand(char *s);
 void	expand(t_list *exec, char *value, char **arg);
 char	*fill_expand(t_list *exec, char *value);
 void	expand_split(t_list *exec, char *arg, int f);
+void	expand_exit_status(char **tmp, int *i);
 void	qaout_in_redi(t_token *token, t_list *exec, char **arg, int i);
+void	utils4_qaout_in_redi(char **tmp, char **value);
 void	parse_arg_redi(t_token *token, t_list *exec);
 void	free_exec(t_list *exec);
 //-----------------------------------------------------

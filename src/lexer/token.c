@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 22:17:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/19 22:19:14 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:02:29 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_token	*init_token(char *value, int type)
 {
 	t_token	*token;
 
-	token = ft_calloc(1,sizeof(t_token));
+	token = ft_calloc(1, sizeof(t_token));
 	token->value = value;
 	token->type = type;
 	return (token);
@@ -37,6 +37,8 @@ t_token	*fill_token(t_lexer *lexer)
 		lexer->j = lexer->i;
 		return (token);
 	}
+	else
+		free(value);
 	return (NULL);
 }
 
@@ -49,7 +51,7 @@ t_token	*arg_token(t_lexer *lexer)
 		if (lexer->c == '"' || lexer->c == '\'')
 		{
 			c = lexer->c;
-			run_qouate(lexer,&c);
+			run_qouate(lexer, &c);
 		}
 		lexer_advance(lexer);
 	}

@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 21:46:55 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/19 23:45:37 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/24 00:09:09 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	printer(t_list *exec)
 				i++;
 			}
 			printf("-----------------outfiles-------------------------\n");
-				
+
 		}
 		i = 0;
 		if(((t_data *)exec->content)->append)
@@ -299,11 +299,11 @@ int	parse(char *line, char **envp)
 		free_token(token);
 		token = get_next_token(lexer);
 	}
-
-	here_doc(exec);
+	printer(exec);
+	// here_doc(exec);
 	free(lexer);
-	start_exec(exec);
+	// start_exec(exec);
 	free_exec(exec);
+	// system("leaks minishell");
 	return (0);
-
 }

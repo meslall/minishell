@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 09:59:48 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/19 17:00:26 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:14:45 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,27 @@ int	next_expand(char *s)
 	return (i);
 }
 
+void	utils_expand(t_list *exec, char *value, char **tmp, int *i)
+{
+	int		j;
+	char	*tmp1;
+
+	j = 0;
+	j = next_expand(&value[*i]) + *i;
+	tmp1 = fill_expand(exec, ft_substr(value, *i + 1, j));
+	if (tmp1)
+	{
+		*tmp = ft_strjoin(*tmp, tmp1);
+		free (tmp1);
+	}
+	if (j <= (int)ft_strlen(value))
+			*i = j - 1;
+}
+
 void	expand(t_list *exec, char *value, char **arg)
 {
 	int		i;
 	char	*tmp;
-	char	*tmp1;
 	char	*c;
 	int		j;
 
@@ -64,49 +80,18 @@ void	expand(t_list *exec, char *value, char **arg)
 	i = 0;
 	while (value[i])
 	{
-		if (value[i] == '$' && is_white_space(value[i + 1]) == 0)
-		{
-			j = next_expand(&value[i]) + i;
-			tmp1 = fill_expand(exec, ft_substr(value, i + 1, j));
-			if (tmp1)
-			{
-				tmp = ft_strjoin(tmp, tmp1);
-				free (tmp1);
-			}
-			if (j <= (int)ft_strlen(value))
-					i = j - 1;
-		}
+		if (value[i] == '$' && value[i + 1] == '?')
+			expand_exit_status(&tmp, &i);
+		else if (value[i] == '$' && is_white_space(value[i + 1]) == 0)
+			utils_expand(exec, value, &tmp, &i);
 		else
 		{
 			c[0] = value[i];
-			tmp = ft_strjoin(tmp,c);
+			tmp = ft_strjoin(tmp, c);
 		}
 		i++;
 	}
 	*arg = ft_strdup(tmp);
 	free(c);
 	free(tmp);
-}
-
-char	*fill_expand(t_list *exec,char *value)
-{
-	int	i;
-	int	len;
-
-	i = -1;
-
-	(void)exec;
-	value = ft_strjoin(value, "=");
-	while (g_glob.envp[++i])
-	{
-		if (ft_strncmp(g_glob.envp[i], value, ft_strlen(value)) == 0)
-		{
-			len = ft_strlen(value);
-			free(value);
-			value = ft_strdup(g_glob.envp[i] + len);
-			return (value);
-		}
-	}
-	free(value);
-	return (NULL);
 }
