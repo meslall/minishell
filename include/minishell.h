@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/24 18:14:30 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/25 03:10:54 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,12 @@ void	qaout_in_redi(t_token *token, t_list *exec, char **arg, int i);
 void	utils4_qaout_in_redi(char **tmp, char **value);
 void	parse_arg_redi(t_token *token, t_list *exec);
 void	free_exec(t_list *exec);
+int		ft_skip_whitespace(char *av, int *i);
+int		red_error(int *i, int *j, char *argv);
+char	quotes_exist(char *argv, size_t *i);
+int		handle_quotes(char *s);
+int		ft_cmp(char *s, char c);
+void	utils_handle_errors(char *argv, size_t *i, size_t *j);
 //-----------------------------------------------------
 // int		bulitin(t_list *exec);
 // void	error_export(char *name);

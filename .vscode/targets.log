@@ -6,8 +6,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Sat Sep 24 18:17:36 2022
+# Make data base, printed on Sun Sep 25 03:09:21 2022
+ 
 
 # Variables
 
@@ -16,8 +18,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 15)
-SRC = src/minishell.c src/signals.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c src/parce/expand.c src/parce/expand_utils.c src/parce/qaout.c src/parce/redirections_utils.c src/parce/free.c src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c src/exec/exec.c src/parce/qaout_utils.c src/parce/qaout_utils1.c src/parce/redirections_utils1.c src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/exec/utils.c src/builtins/echo.c src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c src/builtins/unset.c src/builtins/export.c src/parce/utils.c src/builtins/exp_utils1.c src/builtins/exp_utils2.c src/builtins/unset_utils.c 
-# makefile (from `Makefile', line 31)
+SRC = src/minishell.c src/signals.c src/lexer/lexer.c src/lexer/token.c src/lexer/lexer_utils.c src/parce/parce.c src/parce/expand.c src/parce/expand_utils.c src/parce/qaout.c src/parce/redirections_utils.c src/parce/free.c src/parce/args.c src/parce/init_struct.c src/parce/pipe.c src/parce/redirections.c src/exec/exec.c src/parce/qaout_utils.c src/parce/qaout_utils1.c src/parce/redirections_utils1.c src/errors_handle/handle_errors_utils.c src/errors_handle/handle_errors_utils1.c src/builtins/builtins.c src/builtins/pwd.c src/builtins/cd.c src/exec/exec_utils.c src/exec/utils.c src/builtins/echo.c src/builtins/exit.c src/parce/envp.c src/errors_handle/handle_errors.c src/builtins/env.c src/builtins/unset.c src/builtins/export.c src/parce/utils.c src/builtins/exp_utils1.c src/builtins/exp_utils2.c src/builtins/unset_utils.c 
+# makefile (from `Makefile', line 32)
 IFLAGS = -I ~/Desktop/brew/opt/readline/include
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
@@ -29,20 +31,20 @@ IFLAGS = -I ~/Desktop/brew/opt/readline/include
 CURDIR := /Users/omeslall/Desktop/minishell
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 39)
+# makefile (from `Makefile', line 40)
 RM = @rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 27)
+# makefile (from `Makefile', line 28)
 CFLAGS = -Wall -Wextra -Werror
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.bGauSPRj5x/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.D9hhrROJ4y/Render
 # environment
 PATH = /goinfre/omeslall//.brew/bin:/Users/omeslall/goinfre/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/omeslall/Desktop/brew/bin
 # environment
@@ -54,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.C8ZsCYcw1o/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QEl5XOuBX3/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -74,7 +76,7 @@ VSCODE_CODE_CACHE_PATH = /Users/omeslall/Library/Application Support/Code/Cached
 # environment
 LOGNAME = omeslall
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 ZSH = /Users/omeslall/.oh-my-zsh
 # environment
@@ -91,9 +93,9 @@ MAKECMDGOALS := all
 HOMEBREW_CACHE = /Users/omeslall/goinfre/tmp/omeslall/Homebrew/Caches
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 37)
+# makefile (from `Makefile', line 38)
 LIBFT = libft/libft.a
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 26)
 CC = @gcc -g -lreadline 
 # default
 MAKE_VERSION := 3.81
@@ -107,7 +109,7 @@ NAME = minishell
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 29)
+# makefile (from `Makefile', line 30)
 LFLAGS = -L ~/Desktop/brew/opt/readline/lib
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
@@ -128,7 +130,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000005.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -146,7 +148,7 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186a8
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -158,9 +160,10 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4001
+VSCODE_PID = 3812
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=2/100=2%
+ 
+# Load=74/1024=7%, Rehash=0, Collisions=3/109=3%
 
 # Pattern-specific Variable Values
 
@@ -168,9 +171,9 @@ VSCODE_PID = 4001
 
 # Directories
 
-# . (device 16777227, inode 985100): 11 files, no impossibilities.
+# . (device 16777227, inode 985100): 10 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -183,15 +186,15 @@ all: minishell
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
 
 t:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 58):
+#  commands to execute (from `Makefile', line 59):
 	@./$(NAME)
 	
 
@@ -204,7 +207,7 @@ t:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-24 16:39:45
+#  Last modified 2022-09-25 03:09:10
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -212,10 +215,29 @@ Makefile:
 
 minishell:
 #  Implicit rule search has not been done.
-#  Last modified 2022-09-24 18:14:50
+#  Implicit/static pattern stem: `'
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 44):
+#  Needs to be updated (-q is set).
+# automatic
+# @ := minishell
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/17=18%
+#  commands to execute (from `Makefile', line 45):
 	@cd libft && make && make bonus && cd ..
 	@stty -echoctl
 	$(CC) $(CFLAGS) $(LIBFT) $(SRC) -lreadline $(LFLAGS) $(IFLAGS) -o $(NAME)
@@ -226,7 +248,7 @@ fclean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 53):
+#  commands to execute (from `Makefile', line 54):
 	@cd libft && make fclean && cd ..
 	$(RM) $(NAME)
 	@echo "\033[0;31mminishell DELETED 🗑"
@@ -247,12 +269,12 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 50):
+#  commands to execute (from `Makefile', line 51):
 	@cd libft && make clean && cd ..
 	
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/25=0%
+# Load=9/1024=1%, Rehash=0, Collisions=0/26=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -264,6 +286,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Sep 24 18:17:36 2022
+# Finished Make data base on Sun Sep 25 03:09:21 2022
 
  
