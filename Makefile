@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+         #
+#    By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 15:56:31 by kdoulyaz          #+#    #+#              #
-#    Updated: 2022/10/02 19:39:53 by omeslall         ###   ########.fr        #
+#    Updated: 2022/10/02 21:11:34 by kdoulyaz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,17 @@ SRC = src/minishell.c src/signals.c src/lexer/lexer.c src/lexer/token.c src/lexe
 		src/builtins/export.c src/parce/utils.c src/builtins/exp_utils1.c src/builtins/unset_utils.c src/here_doc/her_doc.c\
 		src/errors_handle/handle_errors_utils.c src/errors_handle/handle_errors_utils1.c src/parce/redirection_utils1.c\
 
-CC = @gcc -g -lreadline -fsanitize=address
+CC = @gcc -g -lreadline #-fsanitize=address
 
 CFLAGS = -Wall -Wextra -Werror
 # for oussama
-LFLAGS = -L ~/Desktop/brew/opt/readline/lib
+# LFLAGS = -L ~/Desktop/brew/opt/readline/lib
 
-IFLAGS = -I ~/Desktop/brew/opt/readline/include
+# IFLAGS = -I ~/Desktop/brew/opt/readline/include
 # for khalid 
-# LFLAGS = -L ~/.brew/opt/readline/lib
+LFLAGS = -L ~/.brew/opt/readline/lib
 
-# IFLAGS = -I ~/.brew/opt/readline/include
+IFLAGS = -I ~/.brew/opt/readline/include
 
 LIBFT = libft/libft.a
 
