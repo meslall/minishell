@@ -6,7 +6,7 @@
 /*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:24:17 by omeslall          #+#    #+#             */
-/*   Updated: 2022/10/02 04:17:56 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/10/02 20:04:42 by omeslall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	utils_expand_split(t_list *exec, char **tmp, int f)
 		((t_data *)exec->content)->error = 1;
 		while (tmp[++i])
 			free(tmp[i]);
+		position_quote(" ", 1);
 	}
 	else if (f == 1 && len_2d_array((void *)tmp) == 1)
 	{

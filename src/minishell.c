@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:50:37 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/27 23:13:43 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:18:04 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	initialiser(void)
 {
 	init_signal();
 	g_glob.g_exit_status = 0;
-	g_glob.built = 0;
 	g_glob.g_exp = 0;
-	g_glob.flag = 0;
 	g_glob.env = 0;
 	g_glob.last = 0;
 	g_glob.pwd = NULL;

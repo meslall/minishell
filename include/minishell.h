@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 16:51:19 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/29 17:08:04 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:31:16 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,23 @@ typedef struct s_glob
 	int		g_exit_status;
 	int		g_child;
 	int		g_exp;
-	int		h_flag;
 	int		g_env;
 	char	**envp;
-	int		built;
-	int		i;
 	int		j;
 	char	**exp;
-	char	*newpwd;
 	int		signal_heredoc;
 	int		signalchild;
 	int		stop;
-	int		signalqiut;
 	int		pid;
 	int		fdout;
-	int		lst_size;
 	int		tmpin;
 	int		tmpout;
 	int		end[2];
-	char	*new_path;
+	int		expand;
 	int		copy_fd;
-	int		input;
 	int		dollar;
 	char	*pwd;
-	int		flag;
 	int		env;
-	char	*old_pwd;
 	int		last;
 }				t_glob;
 t_glob			g_glob;
@@ -156,6 +147,7 @@ int		handle_quotes(char *s);
 int		ft_cmp(char *s, char c);
 void	utils_handle_errors(char *argv, size_t *i, size_t *j);
 void	skip_in_qaout(char *argv, int *i);
+
 //-----------------------------------------------------
 
 int		bulitin(t_list *exec);
@@ -174,12 +166,12 @@ char	**create_envp(char **envp);
 int		count_args(char **args);
 char	**add_env(char **strs, char *arg);
 int		env_cmd(void);
+void	free_loop(char **args);
 int		unset_cmd(char **args);
 int		export_cmd(t_list *exec);
 char	**creat_export(char **env);
 char	*ft_join(char *s1, char *s2);
 char	*g_v_n(char *str);
-int		get_index(char *str, char c);
 int		check_error(char *arg);
 int		g_index(char *str, char c);
 int		big_len(int s1, int s2);
@@ -208,18 +200,8 @@ int		err_fork(void);
 void	initialise(void);
 char	*ft_getenv(char *str);
 void	error_msg(char *str, int err);
-void	getcwd_error(int err, char *path);
 int		separator(char c);
 char	*new_v(char *str, int i, int start);
 void	open_heredoc(char *value, int expand);
-int		cd_cmd1(char **args);
-void	cd_err(void);
-void	update_env1(char *old_pwd);
-void	khwi(char *str);
-char	*norm_1(char **args, char *new_path, int mode);
-void	norm_2(char **args);
-int		err_cd(char **args, int flag);
-void	khwi(char *str);
-int		err_chdir(char **args);
 
 #endif

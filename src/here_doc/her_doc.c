@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 00:49:30 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/09/24 19:28:05 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:15:47 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*parse_dollar(char *str, int *i, int quote)
 	char	*new;
 
 	start = *i + 1;
-	g_glob.dollar = 1;
 	if (str[start] == '?')
 	{
 		new = ft_itoa(g_glob.g_exit_status);

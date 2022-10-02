@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:49:56 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/09/28 18:58:27 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:10:44 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	built_parent(t_list *exec)
 		if (g_glob.fdout != -1)
 			ft_dup(g_glob.fdout, 1);
 		g_glob.g_exit_status = execute_bulitings(exec, 0);
-		g_glob.built = 1;
 		dup2(tmpin, 0);
 		dup2(tmpout, 1);
 		close(tmpin);
@@ -77,10 +76,7 @@ void	child_p(t_list *exec, int *p, int copy_fd)
 			is_derictory(exec);
 			if (execve(find_path(((t_data *)exec->content)->args[0], \
 			g_glob.envp), ((t_data *)exec->content)->args, g_glob.envp) == -1)
-			{
-				ree(exec);
-				exit(g_glob.g_exit_status);
-			}
+				(ree(exec), exit(g_glob.g_exit_status));
 		}
 		else
 			exit(0);
