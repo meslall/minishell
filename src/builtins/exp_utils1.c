@@ -6,13 +6,13 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 13:00:05 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/08/31 20:19:51 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:01:33 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*get_new_line(char *name, char *value)
+char	*new_line(char *name, char *value)
 {
 	char	*tmp;
 
@@ -34,26 +34,26 @@ char	*get_name(char *str)
 	char	*tmp;
 
 	i = -1;
-	tmp = malloc(sizeof(char) * get_index(str, '=') + 1);
+	tmp = malloc(sizeof(char) * g_index(str, '=') + 1);
 	if (!tmp)
 		return (NULL);
-	while (++i < get_index(str, '='))
+	while (++i < g_index(str, '='))
 		tmp[i] = str[i];
 	tmp[i] = 0;
 	return (tmp);
 }
 
-int	is_variable_exist(char *name)
+int	is_exist(char *name)
 {
 	int		i;
 	char	*tmp;
 
-	tmp = get_new_line(name, NULL);
+	tmp = new_line(name, NULL);
 	i = -1;
 	while (g_glob.exp[++i])
 	{
-		if (ft_strncmp(g_glob.exp[i], tmp,\
-				big_len(get_index(g_glob.exp[i], '='), ft_strlen(tmp))) == 0)
+		if (ft_strncmp(g_glob.exp[i], tmp, \
+				big_len(g_index(g_glob.exp[i], '='), ft_strlen(tmp))) == 0)
 		{
 			free(tmp);
 			return (i);

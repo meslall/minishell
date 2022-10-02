@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:32:24 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/09/18 16:42:31 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/25 05:20:02 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	exit_cmd(char **args)
 	}
 	else if (len == 3)
 	{
-		printf("exit\n");	
-		exit(1);
+		printf("exit\n");
+		exit(ft_atoi(args[1]));
 	}
 	return (0);
 }

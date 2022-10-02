@@ -6,7 +6,7 @@
 /*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 16:15:07 by kdoulyaz          #+#    #+#             */
-/*   Updated: 2022/09/17 15:26:18 by kdoulyaz         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:00:25 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,36 @@ void	ft_dup(int fd, int end)
 	close(fd);
 }
 
-void	waiting(t_list *lst)
+void	wait_pids(t_list *exec, int *p)
 {
-	dup2(g_glob.tmpin, 0);
-	dup2(g_glob.tmpout, 1);
-	close(g_glob.tmpin);
-	close(g_glob.tmpout);
-	while (lst)
+	int		status;
+
+	while (exec)
 	{
-		wait(NULL);
-		lst = lst->next;
+		waitpid(g_glob.pid, &status, 0);
+		if (g_glob.pid != -1 && g_glob.last == 0)
+		{
+			if (WIFEXITED(status))
+				g_glob.g_exit_status = WEXITSTATUS(status);
+			if (WIFSIGNALED(status))
+				g_glob.g_exit_status = 128 + WTERMSIG(status);
+		}
+		g_glob.last = 0;
+		while (wait(NULL) != -1)
+			;
+		exec = exec->next;
 	}
+	close(p[0]);
+	close(p[1]);
 	init_signal();
+}
+
+void	initialise(void)
+{
+	g_glob.copy_fd = -1;
+	g_glob.tmpin = dup(0);
+	g_glob.tmpout = dup(1);
+	g_glob.g_child = 0;
 }
 
 int	err_inf(t_list *exec)
@@ -49,6 +67,7 @@ int	err_inf(t_list *exec)
 		write(2, ((t_data *)exec->content)->inf, \
 		ft_strlen(((t_data *)exec->content)->inf));
 		write(2, ": No such file or directory\n", 28);
+		g_glob.g_exit_status = 127;
 		return (1);
 	}
 	return (0);

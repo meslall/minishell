@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 13:30:37 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/24 16:37:41 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/25 01:24:57 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,6 @@ void	utils1_qaout_in_redi(char **arg, char **value, char **tmp \
 	free(token->value);
 	token->value = ft_strdup("");
 	free(*arg);
-}
-
-void	utils2_qaout_in_redi(char **tmp, char **arg, t_list *exec)
-{
-	if (check_qaout(*tmp) == 1)
-		single_quote(*tmp, arg, 0);
-	else if (check_qaout(*tmp) == 2)
-		double_quote(exec, *tmp, arg, 0);
-}
-
-void	utils3_qaout_in_redi(char **tmp, char **arg, t_list *exec)
-{
-	char	*tmp1;
-
-	tmp1 = *tmp;
-	*tmp = ft_strjoin(*arg, *tmp);
-	free(tmp1);
-	expand(exec, *tmp, arg);
-	expand_split(exec, *arg, 1);
 }
 
 void	qaout_in_redi(t_token *token, t_list *exec, char **arg, int i)

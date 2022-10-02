@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omeslall <omeslall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kdoulyaz <kdoulyaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 22:17:06 by omeslall          #+#    #+#             */
-/*   Updated: 2022/09/24 18:02:29 by omeslall         ###   ########.fr       */
+/*   Updated: 2022/09/27 23:43:33 by kdoulyaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*init_token(char *value, int type)
 
 	token = ft_calloc(1, sizeof(t_token));
 	token->value = value;
-	token->type = type;
+	token->e_type = type;
 	return (token);
 }
 
@@ -37,8 +37,7 @@ t_token	*fill_token(t_lexer *lexer)
 		lexer->j = lexer->i;
 		return (token);
 	}
-	else
-		free(value);
+	free(value);
 	return (NULL);
 }
 
